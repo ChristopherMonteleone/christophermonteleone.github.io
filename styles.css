@@ -301,13 +301,18 @@ h2 {
     font-size: 0.8rem;
 }
 
-/* Simplified Status Colors */
+/* Status Colors */
 .status-todo {
     background: #fff3e0;
     color: #e65100;
 }
 
-.status-completed {
+.status-inprogress {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.status-done {
     background: #e8f5e9;
     color: #2e7d32;
 }
