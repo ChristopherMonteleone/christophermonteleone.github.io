@@ -3,18 +3,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const fullPath = window.location.pathname;
     const currentPage = fullPath.split('/').pop() || 'index.html';
     
-    // For debugging - remove these in production
-    console.log('Full path:', fullPath);
+    // For debugging
     console.log('Current page:', currentPage);
     
+    // Update navigation highlighting
     const navLinks = document.querySelectorAll('nav a');
-    
     navLinks.forEach(link => {
         const linkHref = link.getAttribute('href');
-        console.log('Link href:', linkHref); // For debugging
         
+        // Check if this link matches the current page
         if (linkHref === currentPage || 
-            (currentPage === '' && linkHref === 'index.html')) {
+            (currentPage === '' && linkHref === 'index.html') ||
+            (fullPath.includes(linkHref))) {
             link.style.color = '#fff';
         } else {
             link.style.color = '#aaa';
