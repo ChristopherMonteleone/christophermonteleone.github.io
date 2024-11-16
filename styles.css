@@ -87,14 +87,17 @@ h2 {
 .blog-posts {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 2rem;
 }
 
 .blog-post {
-    padding: 1rem;
-    background: #f9f9f9;
-    border-radius: 6px;
-    border-left: 4px solid #333;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1.5rem;
+}
+
+.blog-post:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
 }
 
 .blog-post h4 {
@@ -128,6 +131,14 @@ h2 {
 .note-category {
     border-bottom: 1px solid #ddd;
     padding-bottom: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.2s ease;
+}
+
+.note-category:hover {
+    transform: translateX(10px);
 }
 
 .note-category:last-child {
