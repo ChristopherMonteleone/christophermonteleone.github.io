@@ -206,16 +206,11 @@ h2 {
     text-decoration: none;
     color: inherit;
     display: block;
-    padding: 1rem;
-    background: #fff;
-    border-radius: 4px;
-    margin-top: 1rem;
     transition: transform 0.2s ease;
 }
 
 .post-link:hover {
     transform: translateX(10px);
-    background: #f5f5f5;
 }
 
 .blog-posts {
