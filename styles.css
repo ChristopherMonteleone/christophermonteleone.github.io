@@ -117,4 +117,30 @@ h2 {
 .blog-post:hover {
     transform: translateX(4px);
     transition: transform 0.2s ease;
+}
+
+.notes-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.note-category {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1rem;
+}
+
+.note-category:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.note-category h3 {
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.note-category p {
+    color: #666;
+    line-height: 1.4;
 } 
