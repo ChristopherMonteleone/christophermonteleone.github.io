@@ -127,7 +127,7 @@ h2 {
 
 .note-category {
     border-bottom: 1px solid #ddd;
-    padding-bottom: 1rem;
+    padding-bottom: 1.5rem;
 }
 
 .note-category:last-child {
@@ -137,10 +137,29 @@ h2 {
 
 .note-category h3 {
     color: #333;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
 }
 
 .note-category p {
     color: #666;
     line-height: 1.4;
+    margin-top: 0.5rem;
+}
+
+.meta-info {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0.5rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.date {
+    color: #888;
+}
+
+.source {
+    color: #666;
+    font-style: italic;
 } 
