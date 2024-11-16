@@ -269,6 +269,9 @@ h2 {
 }
 
 .resource-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
     background: white;
     padding: 1rem;
     border-radius: 4px;
@@ -295,26 +298,8 @@ h2 {
 }
 
 .status {
-    display: inline-block;
-    padding: 0.2rem 0.5rem;
-    border-radius: 3px;
     font-size: 0.8rem;
-}
-
-/* Status Colors */
-.status-todo {
-    background: #fff3e0;
-    color: #e65100;
-}
-
-.status-inprogress {
-    background: #e3f2fd;
-    color: #1565c0;
-}
-
-.status-done {
-    background: #e8f5e9;
-    color: #2e7d32;
+    margin-left: auto;
 }
 
 /* Info Page Styles */
