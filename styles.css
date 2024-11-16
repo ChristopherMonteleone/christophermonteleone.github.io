@@ -237,4 +237,106 @@ h2 {
 .note-category:last-child {
     border-bottom: none;
     padding-bottom: 0;
+}
+
+/* Resource Grid Layout */
+.resource-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Resource Category Styling */
+.resource-category {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 2rem;
+}
+
+.resource-category:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.resource-category h3 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
+
+/* Resource List Styling */
+.resource-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Individual Resource Item */
+.resource-item {
+    background: white;
+    padding: 1rem;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.resource-item:hover {
+    transform: translateX(10px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+.resource-item h4 {
+    color: #222;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+/* Meta Information */
+.author, .topic, .status {
+    display: inline-block;
+    font-size: 0.9rem;
+    margin-right: 1rem;
+}
+
+.author {
+    color: #666;
+}
+
+.topic {
+    color: #555;
+    font-style: italic;
+}
+
+.status {
+    background: #f0f0f0;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.8rem;
+}
+
+/* Status Colors */
+.status-toread {
+    background: #fff3e0;
+    color: #e65100;
+}
+
+.status-reading {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.status-completed {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.status-following {
+    background: #f3e5f5;
+    color: #7b1fa2;
+}
+
+/* Optional: Add a link style if resources are clickable */
+.resource-item a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
 } 
