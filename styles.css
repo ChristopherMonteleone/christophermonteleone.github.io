@@ -341,4 +341,42 @@ h2 {
 .info-content p:last-child {
     margin-bottom: 0;
 }
+
+.info-section {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.info-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+}
+
+.info-list > li {
+    margin-bottom: 1.5rem;
+}
+
+.info-list ul {
+    margin-top: 0.5rem;
+    margin-left: 1.5rem;
+    list-style: disc;
+}
+
+.info-list ul li {
+    margin-bottom: 0.5rem;
+}
+
+.observation-note {
+    background: #f5f5f5;
+    padding: 1.5rem;
+    border-radius: 4px;
+    margin-top: 2rem;
+}
+
+.observation-note h4 {
+    color: #333;
+    margin-bottom: 1rem;
+}
  
