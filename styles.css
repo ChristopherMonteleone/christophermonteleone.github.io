@@ -173,4 +173,31 @@ h2 {
 .source {
     color: #666;
     font-style: italic;
+}
+
+.article-meta {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 1rem 0 2rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.article-content {
+    line-height: 1.8;
+}
+
+.article-content p {
+    margin-bottom: 1.5rem;
+}
+
+.blog-post a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.blog-post h4 {
+    margin-top: 1rem;
 } 
