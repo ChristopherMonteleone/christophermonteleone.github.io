@@ -1,1 +1,168 @@
-<h1>Hi my name is Chris!</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chris Monteleone | IT Portfolio</title>
+    <style>
+        :root {
+            --primary: #1f3c88;
+            --text: #1f1f1f;
+            --background: #f7f8fc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            gap: 2rem;
+        }
+
+        .brand {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary);
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        nav a {
+            color: var(--text);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        nav li {
+            position: relative;
+        }
+
+        nav a:hover,
+        nav a:focus {
+            color: var(--primary);
+        }
+
+        .has-dropdown > a::after {
+            content: "";
+            display: inline-block;
+            margin-left: 0.35rem;
+            border-width: 0.3rem 0.3rem 0 0.3rem;
+            border-style: solid;
+            border-color: currentColor transparent transparent transparent;
+            vertical-align: middle;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            left: 0;
+            background-color: #ffffff;
+            box-shadow: 0 10px 25px rgba(31, 60, 136, 0.15);
+            border-radius: 0.5rem;
+            padding: 0.75rem 0;
+            list-style: none;
+            min-width: 12rem;
+        }
+
+        .dropdown-menu li {
+            padding: 0;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.5rem 1.25rem;
+            font-weight: 500;
+            color: var(--text);
+            white-space: nowrap;
+        }
+
+        .dropdown-menu a:hover,
+        .dropdown-menu a:focus {
+            background-color: rgba(31, 60, 136, 0.08);
+            color: var(--primary);
+        }
+
+        .has-dropdown:hover .dropdown-menu,
+        .has-dropdown:focus-within .dropdown-menu {
+            display: block;
+        }
+
+        main {
+            display: grid;
+            place-items: center;
+            padding: 20vh 1.5rem;
+            text-align: center;
+            gap: 1.25rem;
+        }
+
+        h1 {
+            font-size: clamp(1.75rem, 5vw, 2.75rem);
+            line-height: 1.3;
+        }
+
+        .subheading {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            color: rgba(31, 31, 31, 0.85);
+            max-width: 42rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="brand">Chris Monteleone</div>
+            <nav aria-label="Primary">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="has-dropdown">
+                        <a href="experience.html">Experience</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="certifications.html">Certifications</a></li>
+                            <li><a href="skills.html">Skills</a></li>
+                            <li><a href="tools.html">Tools</a></li>
+                            <li><a href="projects.html">Projects</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="about.html">About Me</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <h1>Hi, I'm Chris. IT Professional and Enthusiast.</h1>
+        <p class="subheading">I have my Bachelor's in Computer Science and over two years of experience in Information Technology and related fields.</p>
+        <p class="subheading">I value project-based learning. I'd like to show you what I know - not just tell you.</p>
+    </main>
+</body>
+</html>
