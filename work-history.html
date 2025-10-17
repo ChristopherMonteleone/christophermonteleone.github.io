@@ -9,7 +9,6 @@
             --primary: #1f3c88;
             --text: #1f1f1f;
             --background: #f7f8fc;
-            --header-height: clamp(4.5rem, 5vw, 6.5rem);
         }
 
         * {
@@ -23,17 +22,14 @@
             background-color: var(--background);
             color: var(--text);
             min-height: 100vh;
-            padding-top: var(--header-height);
         }
 
         header {
             background-color: #ffffff;
             border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-            position: fixed;
+            position: sticky;
             top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
+            z-index: 100;
         }
 
         .nav-container {
@@ -353,6 +349,18 @@
             color: rgba(31, 31, 31, 0.8);
         }
 
+        .timeline-entry.upcoming .timeline-card {
+            border: 1px dashed rgba(31, 60, 136, 0.25);
+            background: linear-gradient(120deg, rgba(31, 60, 136, 0.04), rgba(31, 60, 136, 0));
+            box-shadow: none;
+        }
+
+        .timeline-entry.upcoming .timeline-marker {
+            background: #ffffff;
+            border-color: rgba(31, 60, 136, 0.4);
+            box-shadow: 0 0 0 3px rgba(31, 60, 136, 0.15);
+        }
+
         @media (max-width: 640px) {
             .nav-container {
                 padding: 1rem 1.25rem;
@@ -416,6 +424,7 @@
     <main>
         <section class="page-intro">
             <h1>Work History</h1>
+            <p>A curated look at my professional journey, beginning with my current role. Additional positions will be added soon to paint the full picture.</p>
         </section>
         <section class="timeline" aria-label="Professional experience timeline">
             <article class="timeline-entry current">
@@ -681,6 +690,13 @@
                             </div>
                         </section>
                     </div>
+                </div>
+            </article>
+            <article class="timeline-entry upcoming" aria-label="Upcoming work history entries">
+                <div class="timeline-marker" aria-hidden="true"></div>
+                <div class="timeline-card">
+                    <h2>Additional roles coming soon</h2>
+                    <p>Stay tuned for more chapters of my career journey, including leadership roles and hands-on technical positions across diverse industries.</p>
                 </div>
             </article>
         </section>
