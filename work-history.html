@@ -167,6 +167,215 @@
             font-size: 1.1rem;
             line-height: 1.6;
         }
+
+        .page-intro {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .page-intro p {
+            color: rgba(31, 31, 31, 0.75);
+        }
+
+        .timeline {
+            position: relative;
+            display: grid;
+            gap: 2.5rem;
+            padding-left: 2.5rem;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            inset: 0 auto 0 1.15rem;
+            width: 2px;
+            background: linear-gradient(to bottom, rgba(31, 60, 136, 0.35), rgba(31, 60, 136, 0.05));
+        }
+
+        .timeline-entry {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            top: 0.9rem;
+            left: -1.65rem;
+            width: 1.25rem;
+            height: 1.25rem;
+            border-radius: 999px;
+            border: 3px solid #ffffff;
+            background: var(--primary);
+            box-shadow: 0 0 0 4px rgba(31, 60, 136, 0.15);
+        }
+
+        .timeline-entry.current .timeline-marker {
+            background: #2d5ae3;
+        }
+
+        .timeline-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 15px 35px rgba(31, 60, 136, 0.1);
+            display: grid;
+            gap: 1.75rem;
+        }
+
+        .timeline-header {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .company-logo {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 999px;
+            box-shadow: 0 10px 20px rgba(31, 60, 136, 0.15);
+            object-fit: cover;
+        }
+
+        .role-details {
+            display: grid;
+            gap: 0.35rem;
+        }
+
+        .role-details h2 {
+            font-size: clamp(1.35rem, 3vw, 1.75rem);
+            color: var(--text);
+        }
+
+        .role-details .company {
+            font-weight: 600;
+            color: rgba(31, 31, 31, 0.85);
+        }
+
+        .role-details .dates {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: 500;
+            color: rgba(31, 60, 136, 0.75);
+        }
+
+        .role-details .company-link {
+            font-size: 0.95rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .role-details .company-link:hover,
+        .role-details .company-link:focus {
+            text-decoration: underline;
+        }
+
+        .timeline-body {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .timeline-body h3 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: rgba(31, 60, 136, 0.8);
+        }
+
+        .timeline-body ul {
+            list-style: none;
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .timeline-body ul li {
+            position: relative;
+            padding-left: 1.25rem;
+        }
+
+        .timeline-body ul li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.55rem;
+            width: 0.45rem;
+            height: 0.45rem;
+            border-radius: 999px;
+            background-color: rgba(31, 60, 136, 0.45);
+        }
+
+        .skills-grid {
+            display: grid;
+            gap: 1.25rem;
+            grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+        }
+
+        .skill-category {
+            display: grid;
+            gap: 0.5rem;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            background-color: rgba(31, 60, 136, 0.05);
+            border: 1px solid rgba(31, 60, 136, 0.1);
+        }
+
+        .skill-category h4 {
+            font-size: 1rem;
+            color: rgba(31, 60, 136, 0.9);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        .skill-category p {
+            font-size: 1rem;
+            color: rgba(31, 31, 31, 0.8);
+        }
+
+        .timeline-entry.upcoming .timeline-card {
+            border: 1px dashed rgba(31, 60, 136, 0.25);
+            background: linear-gradient(120deg, rgba(31, 60, 136, 0.04), rgba(31, 60, 136, 0));
+            box-shadow: none;
+        }
+
+        .timeline-entry.upcoming .timeline-marker {
+            background: #ffffff;
+            border-color: rgba(31, 60, 136, 0.4);
+            box-shadow: 0 0 0 3px rgba(31, 60, 136, 0.15);
+        }
+
+        @media (max-width: 640px) {
+            .nav-container {
+                padding: 1rem 1.25rem;
+            }
+
+            main {
+                padding: 5rem 1.25rem 3rem;
+            }
+
+            .timeline {
+                padding-left: 2.1rem;
+            }
+
+            .timeline::before {
+                inset: 0 auto 0 0.9rem;
+            }
+
+            .timeline-marker {
+                left: -1.4rem;
+            }
+
+            .timeline-card {
+                padding: 1.5rem;
+            }
+
+            .timeline-header {
+                gap: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -199,8 +408,76 @@
         </div>
     </header>
     <main>
-        <h1>Work History</h1>
-        <p>This placeholder will expand into a detailed timeline of Chris's professional experience, responsibilities, and achievements.</p>
+        <section class="page-intro">
+            <h1>Work History</h1>
+            <p>A curated look at my professional journey, beginning with my current role. Additional positions will be added soon to paint the full picture.</p>
+        </section>
+        <section class="timeline" aria-label="Professional experience timeline">
+            <article class="timeline-entry current">
+                <div class="timeline-marker" aria-hidden="true"></div>
+                <div class="timeline-card">
+                    <header class="timeline-header">
+                        <img src="msshift_image.png" alt="MS Shift logo" class="company-logo">
+                        <div class="role-details">
+                            <h2>Information Technology Specialist</h2>
+                            <p class="company">MS Shift <span class="dates">March 2025 &mdash; Present</span></p>
+                            <a class="company-link" href="https://msshift.com/" target="_blank" rel="noopener">Visit company website</a>
+                        </div>
+                    </header>
+                    <div class="timeline-body">
+                        <section>
+                            <h3>About MS Shift</h3>
+                            <p>MS Shift is a full-service technology provider specializing in the hospitality sector. The company delivers integrated software and hardware solutions, backed by expert IT support to ensure operational reliability and enhanced service delivery for every client.</p>
+                        </section>
+                        <section>
+                            <h3>Key responsibilities</h3>
+                            <ul>
+                                <li>Provide frontline technical support for nearly 1,000 clients, spanning mission-critical healthcare environments and luxury hospitality properties.</li>
+                                <li>Manage a high-volume ticket and call queue, diagnosing issues ranging from Windows permissions to complex peripheral driver conflicts.</li>
+                                <li>Deploy and configure new PCs and kiosks both remotely and on-site, ensuring seamless integration with client infrastructure.</li>
+                                <li>Systematically handle incidents from start to finish, focusing on clear communication with non-technical users and meticulous documentation.</li>
+                            </ul>
+                        </section>
+                        <section>
+                            <h3>Skills &amp; tools</h3>
+                            <div class="skills-grid">
+                                <div class="skill-category">
+                                    <h4>User &amp; Device Management</h4>
+                                    <p>Active Directory, ManageEngine Mobile Device Manager (MDM), Zebra StageNow (Android device provisioning)</p>
+                                </div>
+                                <div class="skill-category">
+                                    <h4>Operating Systems</h4>
+                                    <p>Microsoft Windows, OS Imaging &amp; Deployment, iOS, Android</p>
+                                </div>
+                                <div class="skill-category">
+                                    <h4>Networking</h4>
+                                    <p>Router / Switch Configuration, IP Whitelisting, VPN Configuration, Network Troubleshooting</p>
+                                </div>
+                                <div class="skill-category">
+                                    <h4>Productivity Suites</h4>
+                                    <p>Microsoft Office 365, Google G-Suite</p>
+                                </div>
+                                <div class="skill-category">
+                                    <h4>Remote Support &amp; Documentation</h4>
+                                    <p>TeamViewer, WebEx, Jira, Confluence</p>
+                                </div>
+                                <div class="skill-category">
+                                    <h4>Hardware Support</h4>
+                                    <p>On-Site PC &amp; Kiosk Deployments, Zebra/Dymo Printer Installation &amp; Troubleshooting, Peripheral Diagnostics</p>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </article>
+            <article class="timeline-entry upcoming" aria-label="Upcoming work history entries">
+                <div class="timeline-marker" aria-hidden="true"></div>
+                <div class="timeline-card">
+                    <h2>Additional roles coming soon</h2>
+                    <p>Stay tuned for more chapters of my career journey, including leadership roles and hands-on technical positions across diverse industries.</p>
+                </div>
+            </article>
+        </section>
     </main>
 </body>
 </html>
