@@ -32,6 +32,18 @@
             z-index: 100;
         }
 
+        header::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -1.5rem;
+            height: 1.5rem;
+            background-color: #ffffff;
+            box-shadow: 0 12px 24px rgba(31, 60, 136, 0.08);
+            pointer-events: none;
+        }
+
         .nav-container {
             display: flex;
             align-items: center;
