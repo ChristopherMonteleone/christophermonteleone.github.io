@@ -22,14 +22,18 @@
             background-color: var(--background);
             color: var(--text);
             min-height: 100vh;
+            padding-top: 5.5rem;
         }
 
         header {
             background-color: #ffffff;
             border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 100;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(31, 60, 136, 0.08);
         }
 
         .nav-container {
@@ -153,7 +157,7 @@
         main {
             max-width: 60rem;
             margin: 0 auto;
-            padding: 6rem 1.5rem 4rem;
+            padding: 3rem 1.5rem 4rem;
             display: grid;
             gap: 1.25rem;
         }
@@ -362,12 +366,16 @@
         }
 
         @media (max-width: 640px) {
+            body {
+                padding-top: 6.5rem;
+            }
+
             .nav-container {
                 padding: 1rem 1.25rem;
             }
 
             main {
-                padding: 5rem 1.25rem 3rem;
+                padding: 2.75rem 1.25rem 3rem;
             }
 
             .timeline {
