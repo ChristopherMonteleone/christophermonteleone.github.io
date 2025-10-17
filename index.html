@@ -32,6 +32,17 @@
             z-index: 100;
         }
 
+        header::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -1.5rem;
+            height: 1.5rem;
+            background: linear-gradient(to bottom, #ffffff 0%, #ffffff 70%, rgba(247, 248, 252, 0));
+            pointer-events: none;
+        }
+
         .nav-container {
             display: flex;
             align-items: center;
