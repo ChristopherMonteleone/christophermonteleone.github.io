@@ -24,23 +24,12 @@
             min-height: 100vh;
         }
 
-        header {
+        .site-header {
             background-color: #ffffff;
             border-bottom: 1px solid rgba(0, 0, 0, 0.08);
             position: sticky;
             top: 0;
             z-index: 100;
-        }
-
-        header::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: -1.5rem;
-            height: 1.5rem;
-            background: linear-gradient(to bottom, #ffffff 0%, #ffffff 70%, rgba(247, 248, 252, 0));
-            pointer-events: none;
         }
 
         .nav-container {
@@ -178,16 +167,183 @@
             font-size: 1.1rem;
             line-height: 1.6;
         }
+
+        .page-intro {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .page-intro p {
+            color: rgba(31, 31, 31, 0.75);
+        }
+
+        .timeline {
+            position: relative;
+            display: grid;
+            gap: 2.5rem;
+            padding-left: 2.5rem;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            inset: 0 auto 0 1.15rem;
+            width: 2px;
+            background: linear-gradient(to bottom, rgba(31, 60, 136, 0.35), rgba(31, 60, 136, 0.05));
+        }
+
+        .timeline-entry {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            top: 0.9rem;
+            left: calc(-2.5rem + 1.15rem);
+            transform: translateX(-50%);
+            width: 1.25rem;
+            height: 1.25rem;
+            border-radius: 999px;
+            border: 3px solid #ffffff;
+            background: var(--primary);
+            box-shadow: 0 0 0 4px rgba(31, 60, 136, 0.15);
+        }
+
+        .timeline-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 15px 35px rgba(31, 60, 136, 0.1);
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .timeline-header {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+            align-items: center;
+        }
+
+        .cert-logo {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 999px;
+            box-shadow: 0 10px 20px rgba(31, 60, 136, 0.15);
+            object-fit: contain;
+            background-color: #ffffff;
+            padding: 0.35rem;
+        }
+
+        .cert-details {
+            display: grid;
+            gap: 0.35rem;
+        }
+
+        .cert-details h2 {
+            font-size: clamp(1.35rem, 3vw, 1.75rem);
+            color: var(--text);
+        }
+
+        .cert-summary {
+            font-size: 1.05rem;
+            color: rgba(31, 31, 31, 0.75);
+        }
+
+        .cert-details .cert-link {
+            font-size: 0.95rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .cert-details .cert-link:hover,
+        .cert-details .cert-link:focus {
+            text-decoration: underline;
+        }
+
+        .timeline-body {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .timeline-body h3 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: rgba(31, 60, 136, 0.8);
+        }
+
+        .timeline-body ul {
+            list-style: none;
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .timeline-body ul li {
+            position: relative;
+            padding-left: 1.25rem;
+            color: rgba(31, 31, 31, 0.85);
+        }
+
+        .timeline-body ul li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.55rem;
+            width: 0.45rem;
+            height: 0.45rem;
+            border-radius: 999px;
+            background-color: rgba(31, 60, 136, 0.45);
+        }
+
+        .validated-skills strong {
+            font-weight: 700;
+            color: rgba(31, 60, 136, 0.85);
+        }
+
+        @media (max-width: 640px) {
+            .nav-container {
+                padding: 1rem 1.25rem;
+            }
+
+            main {
+                padding: 5rem 1.25rem 3rem;
+            }
+
+            .timeline {
+                padding-left: 2.1rem;
+            }
+
+            .timeline::before {
+                inset: 0 auto 0 0.9rem;
+            }
+
+            .timeline-marker {
+                left: calc(-2.1rem + 0.9rem);
+            }
+
+            .timeline-card {
+                padding: 1.5rem;
+            }
+
+            .timeline-header {
+                gap: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <header>
+    <header class="site-header">
         <div class="nav-container">
             <div class="brand">
                 <span class="name">Chris Monteleone</span>
                 <span class="location">
                     <span class="sr-only">Location:</span>
-                    <span aria-hidden="true">📍</span>
+                    <span aria-hidden="true">&#128205;</span>
                     Las Vegas, Nevada
                 </span>
             </div>
@@ -210,8 +366,116 @@
         </div>
     </header>
     <main>
-        <h1>Certifications</h1>
-        <p>This page will outline the certifications Chris has earned, why he pursued them, and the study resources he created along the way.</p>
+        <section class="page-intro">
+            <h1>Certifications</h1>
+            <p>Cloud and security credentials that back up my hands-on infrastructure work with Microsoft Azure, AWS, and enterprise networks.</p>
+        </section>
+        <section class="timeline" aria-label="Professional certifications">
+            <article class="timeline-entry">
+                <div class="timeline-marker" aria-hidden="true"></div>
+                <div class="timeline-card">
+                    <header class="timeline-header">
+                        <img src="azure_az104_logo.png" alt="Microsoft Certified: Azure Administrator logo" class="cert-logo">
+                        <div class="cert-details">
+                            <h2>Microsoft Certified: Azure Administrator (AZ-104)</h2>
+                            <p class="cert-summary">Validates ability to run day-to-day Azure infrastructure.</p>
+                            <a class="cert-link" href="https://learn.microsoft.com/en-us/users/chrismonteleone-0629/credentials/f6ec10509d0ec51?ref=https%3A%2F%2Fwww.linkedin.com%2F" target="_blank" rel="noopener">Show credential</a>
+                        </div>
+                    </header>
+                    <div class="timeline-body">
+                        <section>
+                            <h3>Validated skills</h3>
+                            <ul class="validated-skills">
+                                <li><strong>Identity &amp; governance:</strong> Entra ID (Azure AD), RBAC, subscriptions, resource groups, policy.</li>
+                                <li><strong>Compute management:</strong> Deploy/maintain VMs &amp; VMSS, extensions, images, availability sets/Zones.</li>
+                                <li><strong>Storage:</strong> Accounts, Blob/File/Queue, lifecycle management, replication, Azure Files/AD auth.</li>
+                                <li><strong>Networking:</strong> VNets, subnets, NSGs, routing, peering, VPN/ExpressRoute, DNS, load balancers.</li>
+                                <li><strong>Monitoring &amp; BCDR:</strong> Azure Monitor, Log Analytics, alerts, Backup, Site Recovery, updates.</li>
+                                <li><strong>Security &amp; automation:</strong> Key Vault, disk encryption, Defender for Cloud, ARM/Bicep, Automation.</li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </article>
+            <article class="timeline-entry">
+                <div class="timeline-marker" aria-hidden="true"></div>
+                <div class="timeline-card">
+                    <header class="timeline-header">
+                        <img src="network_plus_logo.png" alt="CompTIA Network+ logo" class="cert-logo">
+                        <div class="cert-details">
+                            <h2>CompTIA Network+ (N10-009)</h2>
+                            <p class="cert-summary">Confirms core networking needed for operations and troubleshooting.</p>
+                            <a class="cert-link" href="https://www.certmetrics.com/comptia/public/verification.aspx?code=BFTTQLM68750N4V2" target="_blank" rel="noopener">Show credential</a>
+                        </div>
+                    </header>
+                    <div class="timeline-body">
+                        <section>
+                            <h3>Validated skills</h3>
+                            <ul class="validated-skills">
+                                <li><strong>Fundamentals:</strong> IPv4/IPv6, subnetting/VLSM, OSI &amp; TCP/IP models, cabling, wireless standards.</li>
+                                <li><strong>Implementations:</strong> Switching (VLANs, trunks, STP), routing (static/dynamic), NAT, WLAN configuration.</li>
+                                <li><strong>Operations:</strong> Documentation, backups, change control, performance baselining, monitoring.</li>
+                                <li><strong>Network services &amp; cloud:</strong> DHCP, DNS, NTP, proxies, load balancers, virtualization/segmentation.</li>
+                                <li><strong>Security:</strong> Secure topologies, device hardening, ACLs, WPA3/802.1X, AAA concepts.</li>
+                                <li><strong>Troubleshooting:</strong> Methodology &amp; tools (ping/trace/arp, packet capture), L1&ndash;L7 fault isolation.</li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </article>
+            <article class="timeline-entry">
+                <div class="timeline-marker" aria-hidden="true"></div>
+                <div class="timeline-card">
+                    <header class="timeline-header">
+                        <img src="security_plus_logo.png" alt="CompTIA Security+ logo" class="cert-logo">
+                        <div class="cert-details">
+                            <h2>CompTIA Security+ (SY0-701)</h2>
+                            <p class="cert-summary">Baseline, hands-on security for enterprise environments.</p>
+                            <a class="cert-link" href="https://www.certmetrics.com/comptia/public/verification.aspx?code=H85TQ9M68Y30HQY2" target="_blank" rel="noopener">Show credential</a>
+                        </div>
+                    </header>
+                    <div class="timeline-body">
+                        <section>
+                            <h3>Validated skills</h3>
+                            <ul class="validated-skills">
+                                <li><strong>General concepts:</strong> CIA triad, AAA, control types, secure SDLC, change management.</li>
+                                <li><strong>Threats &amp; vulnerabilities:</strong> Malware/social engineering, scanning, assessment, patching, remediation.</li>
+                                <li><strong>Architecture &amp; design:</strong> Network/cloud security, segmentation/zero trust, PKI/crypto basics.</li>
+                                <li><strong>Implementation:</strong> Secure protocols, endpoint/wireless hardening, IAM/MFA, secrets &amp; keys.</li>
+                                <li><strong>Operations &amp; IR:</strong> SIEM logging, playbooks, containment/eradication/recovery, forensics basics.</li>
+                                <li><strong>GRC:</strong> Policies/standards, compliance frameworks, supply-chain &amp; third-party risk, awareness.</li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </article>
+            <article class="timeline-entry">
+                <div class="timeline-marker" aria-hidden="true"></div>
+                <div class="timeline-card">
+                    <header class="timeline-header">
+                        <img src="aws_saa_logo.png" alt="AWS Certified Solutions Architect &ndash; Associate logo" class="cert-logo">
+                        <div class="cert-details">
+                            <h2>AWS Certified Solutions Architect &ndash; Associate (SAA)</h2>
+                            <p class="cert-summary">Validates ability to design well-architected solutions on AWS.</p>
+                            <a class="cert-link" href="https://cp.certmetrics.com/amazon/en/public/verify/credential/e82c23f95bb14c16ae0bdd5440b79733" target="_blank" rel="noopener">Show credential</a>
+                        </div>
+                    </header>
+                    <div class="timeline-body">
+                        <section>
+                            <h3>Validated skills</h3>
+                            <ul class="validated-skills">
+                                <li><strong>Resilient architectures:</strong> Multi-AZ/Region, failover, backup &amp; restore, DR strategies.</li>
+                                <li><strong>Secure architectures:</strong> IAM, KMS, networking controls (SGs/NACLs), encryption in transit/at rest.</li>
+                                <li><strong>High performance:</strong> Right-sizing compute (EC2/Lambda/Fargate), storage patterns (S3/EFS/EBS), caching.</li>
+                                <li><strong>Cost optimization:</strong> Pricing models, lifecycle policies, right-sizing, data transfer &amp; storage tiers.</li>
+                                <li><strong>Operational excellence:</strong> Monitoring/metrics (CloudWatch), automation, CloudFormation/IaC.</li>
+                                <li><strong>Networking &amp; hybrid:</strong> VPC design, subnets/NAT/TGW, PrivateLink, Direct Connect/VPN.</li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </article>
+        </section>
     </main>
 </body>
 </html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure-Based Windows Server Active Directory Lab</title>
+    <style>
+        :root {
+            --primary: #1f3c88;
+            --text: #1f1f1f;
+            --background: #f7f8fc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        .site-header {
+            background-color: #ffffff;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            gap: 2rem;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary);
+            letter-spacing: 0.04em;
+        }
+
+        .brand .location {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: rgba(31, 60, 136, 0.75);
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        nav a,
+        nav button {
+            color: var(--text);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s ease;
+            background: none;
+            border: none;
+            font: inherit;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        nav li {
+            position: relative;
+        }
+
+        nav a:hover,
+        nav a:focus,
+        nav button:hover,
+        nav button:focus {
+            color: var(--primary);
+        }
+
+        .has-dropdown > button::after {
+            content: "";
+            display: inline-block;
+            margin-left: 0.35rem;
+            border-width: 0.3rem 0.3rem 0 0.3rem;
+            border-style: solid;
+            border-color: currentColor transparent transparent transparent;
+            vertical-align: middle;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #ffffff;
+            box-shadow: 0 10px 25px rgba(31, 60, 136, 0.15);
+            border-radius: 0.5rem;
+            padding: 0.75rem 0;
+            list-style: none;
+            min-width: 12rem;
+        }
+
+        .dropdown-menu li {
+            padding: 0;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.5rem 1.25rem;
+            font-weight: 500;
+            color: var(--text);
+            white-space: nowrap;
+        }
+
+        .dropdown-menu a:hover,
+        .dropdown-menu a:focus {
+            background-color: rgba(31, 60, 136, 0.08);
+            color: var(--primary);
+        }
+
+        .has-dropdown:hover .dropdown-menu,
+        .has-dropdown:focus-within .dropdown-menu {
+            display: block;
+        }
+
+        main {
+            max-width: 60rem;
+            margin: 0 auto;
+            padding: 6rem 1.5rem 4rem;
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            color: var(--primary);
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 3vw, 1.9rem);
+            color: rgba(31, 60, 136, 0.9);
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            color: rgba(31, 60, 136, 0.85);
+        }
+
+        p {
+            font-size: 1.06rem;
+            line-height: 1.7;
+            color: rgba(31, 31, 31, 0.85);
+        }
+
+        .content-card ul {
+            list-style: none;
+            display: grid;
+            gap: 0.6rem;
+        }
+
+        .content-card ul li {
+            position: relative;
+            padding-left: 1.25rem;
+        }
+
+        .content-card ul li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.55rem;
+            width: 0.45rem;
+            height: 0.45rem;
+            border-radius: 999px;
+            background-color: rgba(31, 60, 136, 0.45);
+        }
+
+        .page-intro {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .page-intro p {
+            color: rgba(31, 31, 31, 0.75);
+        }
+
+        .content-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            padding: 2.5rem;
+            box-shadow: 0 15px 35px rgba(31, 60, 136, 0.1);
+            border: 1px solid rgba(31, 60, 136, 0.12);
+            display: grid;
+            gap: 2rem;
+        }
+
+        .content-card section {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .toc-list {
+            display: grid;
+            gap: 0.5rem;
+        }
+
+        .toc-list a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .toc-list a:hover,
+        .toc-list a:focus {
+            text-decoration: underline;
+        }
+
+        .github-link {
+            font-size: 1.05rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .github-link:hover,
+        .github-link:focus {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 640px) {
+            .nav-container {
+                padding: 1rem 1.25rem;
+            }
+
+            main {
+                padding: 5rem 1.25rem 3rem;
+            }
+
+            .content-card {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="nav-container">
+            <div class="brand">
+                <span class="name">Chris Monteleone</span>
+                <span class="location">
+                    <span class="sr-only">Location:</span>
+                    <span aria-hidden="true">&#128205;</span>
+                    Las Vegas, Nevada
+                </span>
+            </div>
+            <nav aria-label="Primary">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="has-dropdown">
+                        <button type="button" aria-haspopup="true">Experience</button>
+                        <ul class="dropdown-menu">
+                            <li><a href="work-history.html">Work History</a></li>
+                            <li><a href="projects.html">Projects</a></li>
+                            <li><a href="certifications.html">Certifications</a></li>
+                            <li><a href="skills.html">Skills</a></li>
+                            <li><a href="education.html">Education</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="about.html">About Me</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="page-intro">
+            <h1>Azure-Based Windows Server Active Directory Lab</h1>
+            <p>This hands-on lab walks through building a production-style Windows Server 2022 domain in Azure, from provisioning infrastructure to managing users, groups, and Group Policy.</p>
+        </section>
+
+        <article class="content-card">
+            <section>
+                <h2>Project Overview</h2>
+                <p>This repository serves as a detailed walkthrough for constructing a Windows Server and Active Directory lab in Microsoft Azure. It covers virtual machine provisioning, domain controller promotion, and core administration tasks to mirror real-world enterprise operations.</p>
+            </section>
+
+            <section>
+                <h2>Table of Contents</h2>
+                <ul class="toc-list">
+                    <li><a href="#part-1">Part 1: Initial Server Setup &amp; Configuration</a></li>
+                    <li><a href="#part-2">Part 2: Promoting to a Domain Controller</a></li>
+                    <li><a href="#part-3">Part 3: Managing Active Directory Users &amp; Groups</a></li>
+                    <li><a href="#part-4">Part 4: Joining a Client PC to the Domain</a></li>
+                    <li><a href="#summary">Summary</a></li>
+                    <li><a href="#tools">Tools, Skills, and Concepts Demonstrated</a></li>
+                </ul>
+            </section>
+
+            <section id="part-1">
+                <h3>Part 1: Initial Server Setup &amp; Configuration</h3>
+                <a class="project-link" href="https://github.com/ChristopherMonteleone/Azure-AD-Lab-Environment/blob/main/Part-1-Server-Setup.md" target="_blank" rel="noopener">View Part 1 steps</a>
+                <p>Deploy a Windows Server 2022 virtual machine in Microsoft Azure, connect via Azure Bastion, configure a static private IP, and install the Active Directory Domain Services, DNS, and DHCP roles to prepare the environment for promotion.</p>
+            </section>
+
+            <section id="part-2">
+                <h3>Part 2: Promoting to a Domain Controller</h3>
+                <a class="project-link" href="https://github.com/ChristopherMonteleone/Azure-AD-Lab-Environment/blob/main/Part-2-Domain-Controller.md" target="_blank" rel="noopener">View Part 2 steps</a>
+                <p>Promote the server to a Domain Controller, create a new Active Directory forest, and build the foundational Organizational Unit (OU) structure used to manage future users, groups, and delegated administration.</p>
+            </section>
+
+            <section id="part-3">
+                <h3>Part 3: Managing Active Directory Users &amp; Groups</h3>
+                <a class="project-link" href="https://github.com/ChristopherMonteleone/Azure-AD-Lab-Environment/blob/main/Part-3-AD-Management.md" target="_blank" rel="noopener">View Part 3 steps</a>
+                <p>Create and manage user accounts and security groups, demonstrate password resets, and move objects between OUs to reinforce day-to-day identity administration workflows.</p>
+            </section>
+
+            <section id="part-4">
+                <h3>Part 4: Joining a Client PC to the Domain</h3>
+                <a class="project-link" href="https://github.com/ChristopherMonteleone/Azure-AD-Lab-Environment/blob/main/Part-4-Joining-Client-to-Domain.md" target="_blank" rel="noopener">View Part 4 steps</a>
+                <p>Provision a second Azure VM, configure DNS to locate the domain, and join the device to Active Directory to validate end-to-end connectivity and domain trust.</p>
+            </section>
+
+            <section id="summary">
+                <h2>Summary</h2>
+                <ul>
+                    <li>Built a complete Windows Server 2022 environment from the ground up within Microsoft Azure, configuring AD DS, DNS, and DHCP.</li>
+                    <li>Established a functional domain, promoted a server to a Domain Controller, and managed users, groups, OUs, and GPOs.</li>
+                </ul>
+            </section>
+
+            <section id="tools">
+                <h2>Tools, Skills, and Concepts Demonstrated</h2>
+                <h3>Cloud &amp; Virtualization</h3>
+                <ul>
+                    <li>Microsoft Azure for provisioning and managing cloud resources through the Azure portal.</li>
+                    <li>Azure Virtual Machines for deploying and configuring Windows Server 2022 workloads.</li>
+                    <li>Cloud cost management concepts, including deallocating and deleting resources when lab work is complete.</li>
+                </ul>
+
+                <h3>Windows Server &amp; Active Directory</h3>
+                <ul>
+                    <li>Windows Server 2022 installation, configuration, and role management.</li>
+                    <li>Active Directory Domain Services promotion and forest creation.</li>
+                    <li>Active Directory Users and Computers for managing users, groups, and OUs.</li>
+                    <li>User and group lifecycle tasks including password resets, account states, and security groups.</li>
+                    <li>Designing OU structures and applying Group Policy Objects.</li>
+                </ul>
+
+                <h3>Networking &amp; Security</h3>
+                <ul>
+                    <li>Azure virtual networking fundamentals, including VNets and network interfaces.</li>
+                    <li>Static IP configuration for domain-critical infrastructure.</li>
+                    <li>Azure Bastion for secure remote access without public RDP exposure.</li>
+                    <li>DNS and DHCP role configuration inside a Windows Server domain.</li>
+                </ul>
+            </section>
+
+            <section>
+                <a class="github-link" href="https://github.com/ChristopherMonteleone/Azure-AD-Lab-Environment" target="_blank" rel="noopener">View full documentation on GitHub</a>
+            </section>
+        </article>
+    </main>
+</body>
+</html>

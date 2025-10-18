@@ -24,23 +24,12 @@
             min-height: 100vh;
         }
 
-        header {
+        .site-header {
             background-color: #ffffff;
             border-bottom: 1px solid rgba(0, 0, 0, 0.08);
             position: sticky;
             top: 0;
             z-index: 100;
-        }
-
-        header::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: -1.5rem;
-            height: 1.5rem;
-            background: linear-gradient(to bottom, #ffffff 0%, #ffffff 70%, rgba(247, 248, 252, 0));
-            pointer-events: none;
         }
 
         .nav-container {
@@ -178,16 +167,86 @@
             font-size: 1.1rem;
             line-height: 1.6;
         }
+
+        .page-intro {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .page-intro p {
+            color: rgba(31, 31, 31, 0.75);
+        }
+
+        .skills-grid {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+        }
+
+        .skill-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            padding: 1.75rem;
+            box-shadow: 0 12px 28px rgba(31, 60, 136, 0.12);
+            border: 1px solid rgba(31, 60, 136, 0.15);
+            display: grid;
+            gap: 1rem;
+        }
+
+        .skill-card h2 {
+            font-size: 1.05rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: rgba(31, 60, 136, 0.85);
+        }
+
+        .skill-card p {
+            color: rgba(31, 31, 31, 0.75);
+            font-size: 1rem;
+        }
+
+        .skill-card ul {
+            list-style: none;
+            display: grid;
+            gap: 0.65rem;
+        }
+
+        .skill-card ul li {
+            position: relative;
+            padding-left: 1.25rem;
+            color: rgba(31, 31, 31, 0.9);
+        }
+
+        .skill-card ul li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.55rem;
+            width: 0.45rem;
+            height: 0.45rem;
+            border-radius: 999px;
+            background-color: rgba(31, 60, 136, 0.5);
+        }
+
+        @media (max-width: 640px) {
+            .nav-container {
+                padding: 1rem 1.25rem;
+            }
+
+            main {
+                padding: 5rem 1.25rem 3rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <header>
+    <header class="site-header">
         <div class="nav-container">
             <div class="brand">
                 <span class="name">Chris Monteleone</span>
                 <span class="location">
                     <span class="sr-only">Location:</span>
-                    <span aria-hidden="true">📍</span>
+                    <span aria-hidden="true">&#128205;</span>
                     Las Vegas, Nevada
                 </span>
             </div>
@@ -210,8 +269,85 @@
         </div>
     </header>
     <main>
-        <h1>Skills</h1>
-        <p>This page will catalogue Chris's technical skill sets with examples that demonstrate his hands-on proficiency.</p>
+        <section class="page-intro">
+            <h1>Skills</h1>
+            <p>Hands-on experience supporting nearly 1,000 endpoints across hospitality and healthcare clients, coupled with enterprise cloud credentials, makes me ready to own day-to-day infrastructure and automation for a system administrator team.</p>
+            <p>I thrive at the intersection of Windows, Azure, and core networking—designing resilient environments, securing them, and keeping users productive through disciplined operations.</p>
+        </section>
+
+        <section class="skills-grid" aria-label="Core competency areas">
+            <article class="skill-card">
+                <h2>Operating Systems &amp; Virtualization</h2>
+                <p>Administer and troubleshoot mixed-platform environments, from imaging to patching.</p>
+                <ul>
+                    <li>Windows Server 2016/2019/2022 and Windows 10/11 deployment, patching, and feature updates.</li>
+                    <li>Linux server administration for services, shell automation, and secure remote access.</li>
+                    <li>VMware vSphere and Microsoft Hyper-V for workload isolation, snapshots, and rapid recovery.</li>
+                    <li>Azure virtual machines &amp; scale sets with availability sets/zones and managed images.</li>
+                    <li>Apple iOS/iPadOS provisioning via ManageEngine MDM for frontline and kiosk devices.</li>
+                </ul>
+            </article>
+
+            <article class="skill-card">
+                <h2>Cloud &amp; SaaS Administration</h2>
+                <p>Apply Azure Administrator and AWS Architect certifications to production tenants.</p>
+                <ul>
+                    <li>Azure subscription and resource group governance, cost guardrails, and monitoring.</li>
+                    <li>AWS compute, storage, and networking design aligned with Well-Architected best practices.</li>
+                    <li>Microsoft 365 (Exchange, Teams, SharePoint) tenant configuration and security baselines.</li>
+                    <li>Google Workspace administration for identity, groups, and collaboration policies.</li>
+                    <li>SaaS onboarding, DNS/SSL updates, and documentation for non-technical maintainers.</li>
+                </ul>
+            </article>
+
+            <article class="skill-card">
+                <h2>Identity &amp; Directory Services</h2>
+                <p>Secure access while keeping onboarding and permissions frictionless.</p>
+                <ul>
+                    <li>Entra ID (Azure AD) design with RBAC, conditional access, and privileged identity controls.</li>
+                    <li>Active Directory user, group, and OU lifecycle management with delegated administration.</li>
+                    <li>Group Policy objects for security baselines, drive mappings, and kiosk lockdowns.</li>
+                    <li>Hybrid identity integrations, SSO app registrations, and MFA rollout support.</li>
+                    <li>Audit and access reviews feeding compliance reports for leadership.</li>
+                </ul>
+            </article>
+
+            <article class="skill-card">
+                <h2>Infrastructure &amp; Networking</h2>
+                <p>Design and sustain reliable connectivity for high-uptime businesses.</p>
+                <ul>
+                    <li>LAN/WAN architecture, VLAN segmentation, and QoS tuning for hospitality and healthcare sites.</li>
+                    <li>TCP/IP, DHCP, DNS, and NAT management across on-premises and cloud resources.</li>
+                    <li>IPSec/SSL VPN configuration for remote teams and site-to-site resiliency.</li>
+                    <li>Storage platforms including SAN/NAS integration, RAID provisioning, and capacity planning.</li>
+                    <li>Load balancers and reverse proxies to deliver resilient application access.</li>
+                </ul>
+            </article>
+
+            <article class="skill-card">
+                <h2>Security &amp; Business Continuity</h2>
+                <p>Embed security controls and recovery plans into every build.</p>
+                <ul>
+                    <li>Endpoint hardening, Defender for Cloud policies, and zero-trust-aligned configurations.</li>
+                    <li>Azure Monitor, Log Analytics, and CloudWatch metrics with actionable alerting.</li>
+                    <li>Veeam Backup &amp; Replication runbooks, restore validation, and off-site retention policies.</li>
+                    <li>Secrets and certificate management with Azure Key Vault and AWS KMS.</li>
+                    <li>Incident response workflows grounded in Security+ methodology and playbooks.</li>
+                </ul>
+            </article>
+
+            <article class="skill-card">
+                <h2>Automation &amp; Service Delivery</h2>
+                <p>Use automation and communication to keep users productive at scale.</p>
+                <ul>
+                    <li>PowerShell automation for user provisioning, compliance reporting, and bulk configuration.</li>
+                    <li>Jira Service Management and ManageEngine ticket triage for nearly 1,000 endpoints.</li>
+                    <li>Remote support and zero-touch deployment with TeamViewer, WebEx, and imaging pipelines.</li>
+                    <li>Confluence knowledge base authoring and change management communication.</li>
+                    <li>Cross-functional coordination during PC, kiosk, and network rollouts to hit go-live dates.</li>
+                </ul>
+            </article>
+        </section>
     </main>
 </body>
 </html>

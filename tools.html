@@ -24,23 +24,12 @@
             min-height: 100vh;
         }
 
-        header {
+        .site-header {
             background-color: #ffffff;
             border-bottom: 1px solid rgba(0, 0, 0, 0.08);
             position: sticky;
             top: 0;
             z-index: 100;
-        }
-
-        header::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: -1.5rem;
-            height: 1.5rem;
-            background: linear-gradient(to bottom, #ffffff 0%, #ffffff 70%, rgba(247, 248, 252, 0));
-            pointer-events: none;
         }
 
         .nav-container {
@@ -181,13 +170,13 @@
     </style>
 </head>
 <body>
-    <header>
+    <header class="site-header">
         <div class="nav-container">
             <div class="brand">
                 <span class="name">Chris Monteleone</span>
                 <span class="location">
                     <span class="sr-only">Location:</span>
-                    <span aria-hidden="true">📍</span>
+                    <span aria-hidden="true">&#128205;</span>
                     Las Vegas, Nevada
                 </span>
             </div>

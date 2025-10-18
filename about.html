@@ -24,23 +24,12 @@
             min-height: 100vh;
         }
 
-        header {
+        .site-header {
             background-color: #ffffff;
             border-bottom: 1px solid rgba(0, 0, 0, 0.08);
             position: sticky;
             top: 0;
             z-index: 100;
-        }
-
-        header::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: -1.5rem;
-            height: 1.5rem;
-            background: linear-gradient(to bottom, #ffffff 0%, #ffffff 70%, rgba(247, 248, 252, 0));
-            pointer-events: none;
         }
 
         .nav-container {
@@ -178,16 +167,57 @@
             font-size: 1.1rem;
             line-height: 1.6;
         }
+
+        .page-intro {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .page-intro p {
+            color: rgba(31, 31, 31, 0.75);
+        }
+
+        .about-section {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .about-section h2 {
+            font-size: clamp(1.35rem, 3vw, 1.6rem);
+            color: rgba(31, 60, 136, 0.9);
+        }
+
+        .about-section p {
+            color: rgba(31, 31, 31, 0.85);
+        }
+
+        .story-wrapper {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            padding: 2.25rem;
+            box-shadow: 0 15px 35px rgba(31, 60, 136, 0.1);
+            border: 1px solid rgba(31, 60, 136, 0.12);
+        }
+
+        @media (max-width: 640px) {
+            .nav-container {
+                padding: 1rem 1.25rem;
+            }
+
+            main {
+                padding: 5rem 1.25rem 3rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <header>
+    <header class="site-header">
         <div class="nav-container">
             <div class="brand">
                 <span class="name">Chris Monteleone</span>
                 <span class="location">
                     <span class="sr-only">Location:</span>
-                    <span aria-hidden="true">📍</span>
+                    <span aria-hidden="true">&#128205;</span>
                     Las Vegas, Nevada
                 </span>
             </div>
@@ -210,8 +240,42 @@
         </div>
     </header>
     <main>
-        <h1>About Me</h1>
-        <p>This page will soon share more about Chris's story, interests, and goals outside of day-to-day IT work.</p>
+        <section class="page-intro">
+            <h1>About Me</h1>
+            <p>I&rsquo;m a technology nerd, dog and cat owner, gamer, weightlifter, coffee drinker, and all-around IT enthusiast.</p>
+        </section>
+
+        <section class="story-wrapper" aria-label="Personal story highlights">
+            <div class="about-section">
+                <div>
+                    <h2>Back Story</h2>
+                    <p>Growing up, I was fascinated by computers, taking them apart, putting them back together, and trying to understand how everything worked. I hosted Minecraft servers for my friends, and my first experience with programming came from trying to mod Minecraft in Java. I&rsquo;ve always been a self-learner, driven by curiosity and a mix of grainy YouTube tutorials, obscure forum posts, and pure determination to make things work.</p>
+                </div>
+
+                <div>
+                    <h2>Academic Foundation</h2>
+                    <p>At UNLV, I studied computer science and explored many areas of technology, including software engineering, data science, cybersecurity, and information technology. I ultimately gravitated toward IT because of its structure, problem-solving nature, and the sheer impact it has as the backbone of our connected world. IT feels like the perfect balance of challenge and purpose, solving problems that keep the modern world moving.</p>
+                </div>
+
+                <div>
+                    <h2>Professional Journey</h2>
+                    <p>I started my career working part-time at Dutch Bros Coffee while finishing college, where I learned how to communicate clearly, stay calm under pressure, and keep operations running smoothly during busy hours&mdash;skills that translate surprisingly well into IT. After graduating, I stepped into more technical work, first as a Web Developer for UCLA&rsquo;s gambling addiction treatment clinic and then as a Strategic Partnerships Intern at CES 2025 with Allviews Technology. Each role sharpened a different side of my skill set, from frontend development and documentation to technical communication and partner coordination.</p>
+                </div>
+
+                <div>
+                    <h2>Today &amp; What&rsquo;s Next</h2>
+                    <p>Now, as an IT Specialist at MS Shift in Las Vegas, I support nearly a thousand clients across hospitality and healthcare. My days are spent troubleshooting complex issues, deploying new systems, and improving reliability for people who depend on technology to do their jobs. Outside of work, I study for new certifications and apply what I learn to personal projects that challenge me to think creatively and stay hands-on with the technology I love.</p>
+                    <p>I recently proposed to my girlfriend of five years, now my fianc&eacute;, and I make it a priority to spend quality time with friends and family when I&rsquo;m not working. These experiences keep me grounded and remind me why I love building things that make life better for others. My goal is to keep learning, building, and evolving one self-taught experiment at a time.</p>
+                </div>
+            </div>
+        </section>
     </main>
 </body>
 </html>
+
+
+
+
+
+
+

@@ -24,23 +24,12 @@
             min-height: 100vh;
         }
 
-        header {
+        .site-header {
             background-color: #ffffff;
             border-bottom: 1px solid rgba(0, 0, 0, 0.08);
             position: sticky;
             top: 0;
             z-index: 100;
-        }
-
-        header::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: -1.5rem;
-            height: 1.5rem;
-            background: linear-gradient(to bottom, #ffffff 0%, #ffffff 70%, rgba(247, 248, 252, 0));
-            pointer-events: none;
         }
 
         .nav-container {
@@ -178,16 +167,81 @@
             font-size: 1.1rem;
             line-height: 1.6;
         }
+
+        .page-intro {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .page-intro p {
+            color: rgba(31, 31, 31, 0.75);
+        }
+
+        .projects-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 12px 28px rgba(31, 60, 136, 0.12);
+            border: 1px solid rgba(31, 60, 136, 0.15);
+            display: grid;
+            gap: 1rem;
+        }
+
+        .project-card h2 {
+            font-size: clamp(1.35rem, 3vw, 1.65rem);
+            color: rgba(31, 60, 136, 0.9);
+        }
+
+        .project-card ul {
+            list-style: none;
+            display: grid;
+            gap: 0.65rem;
+        }
+
+        .project-card ul li {
+            position: relative;
+            padding-left: 1.25rem;
+            color: rgba(31, 31, 31, 0.85);
+        }
+
+        .project-card ul li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.55rem;
+            width: 0.45rem;
+            height: 0.45rem;
+            border-radius: 999px;
+            background-color: rgba(31, 60, 136, 0.45);
+        }
+
+        .project-link {
+            font-size: 0.95rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            width: fit-content;
+        }
+
+        .project-link:hover,
+        .project-link:focus {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
-    <header>
+    <header class="site-header">
         <div class="nav-container">
             <div class="brand">
                 <span class="name">Chris Monteleone</span>
                 <span class="location">
                     <span class="sr-only">Location:</span>
-                    <span aria-hidden="true">📍</span>
+                    <span aria-hidden="true">&#128205;</span>
                     Las Vegas, Nevada
                 </span>
             </div>
@@ -210,8 +264,21 @@
         </div>
     </header>
     <main>
-        <h1>Projects</h1>
-        <p>This page will introduce flagship projects, homelab builds, and Azure initiatives that showcase Chris's capabilities.</p>
+        <section class="page-intro">
+            <h1>Projects</h1>
+            <p>Hands-on builds that demonstrate how I design, secure, and automate infrastructure across Microsoft Azure and enterprise Windows environments.</p>
+        </section>
+
+        <section class="projects-grid" aria-label="Featured projects">
+            <article class="project-card">
+                <h2>Azure-Based Windows Server Active Directory Lab</h2>
+                <ul>
+                    <li>Built a Windows Server 2022 environment in Microsoft Azure, configuring AD DS, DNS, and DHCP end-to-end.</li>
+                    <li>Promoted a Domain Controller, designed OU structure, and managed users, groups, and GPOs for realistic administration scenarios.</li>
+                </ul>
+                <a class="project-link" href="azure-ad-lab.html">View project details</a>
+            </article>
+        </section>
     </main>
 </body>
 </html>
