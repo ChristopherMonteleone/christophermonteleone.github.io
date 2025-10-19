@@ -177,23 +177,29 @@
             color: rgba(31, 31, 31, 0.75);
         }
 
-        .projects-grid {
+        .timeline {
             display: grid;
             gap: 2.5rem;
-            grid-template-columns: 1fr;
-            width: 100%;
-            justify-items: stretch;
         }
 
-        .project-card {
+        .timeline-entry {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .timeline-marker {
+            display: none;
+        }
+
+        .timeline-card {
             background-color: #ffffff;
             border-radius: 1rem;
             padding: 2rem;
             box-shadow: 0 15px 35px rgba(31, 60, 136, 0.1);
             display: grid;
-            gap: 1rem;
-            width: 100%;
-            justify-self: stretch;
+            gap: 1.75rem;
         }
 
         .project-card h2 {
@@ -236,6 +242,24 @@
         .project-link:focus {
             text-decoration: underline;
         }
+
+        @media (max-width: 640px) {
+            .nav-container {
+                padding: 1rem 1.25rem;
+            }
+
+            main {
+                padding: 5rem 1.25rem 3rem;
+            }
+
+            .timeline {
+                gap: 2rem;
+            }
+
+            .timeline-card {
+                padding: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -272,14 +296,17 @@
             <h1>Projects</h1>
         </section>
 
-        <section class="projects-grid" aria-label="Featured projects">
-            <article class="project-card">
-                <h2>Azure-Based Windows Server Active Directory Lab</h2>
-                <ul>
-                    <li>Built a Windows Server 2022 environment in Microsoft Azure, configuring AD DS, DNS, and DHCP end-to-end.</li>
-                    <li>Promoted a Domain Controller, designed OU structure, and managed users, groups, and GPOs for realistic administration scenarios.</li>
-                </ul>
-                <a class="project-link" href="azure-ad-lab.html">View project details</a>
+        <section class="timeline projects-grid" aria-label="Featured projects">
+            <article class="timeline-entry">
+                <div class="timeline-marker" aria-hidden="true"></div>
+                <div class="timeline-card project-card">
+                    <h2>Azure-Based Windows Server Active Directory Lab</h2>
+                    <ul>
+                        <li>Built a Windows Server 2022 environment in Microsoft Azure, configuring AD DS, DNS, and DHCP end-to-end.</li>
+                        <li>Promoted a Domain Controller, designed OU structure, and managed users, groups, and GPOs for realistic administration scenarios.</li>
+                    </ul>
+                    <a class="project-link" href="azure-ad-lab.html">View project details</a>
+                </div>
             </article>
         </section>
     </main>
