@@ -178,18 +178,8 @@
         }
 
         .timeline {
-            position: relative;
             display: grid;
             gap: 2.5rem;
-            padding-left: 2.5rem;
-        }
-
-        .timeline::before {
-            content: "";
-            position: absolute;
-            inset: 0 auto 0 1.15rem;
-            width: 2px;
-            background: linear-gradient(to bottom, rgba(31, 60, 136, 0.35), rgba(31, 60, 136, 0.05));
         }
 
         .timeline-entry {
@@ -200,16 +190,7 @@
         }
 
         .timeline-marker {
-            position: absolute;
-            top: 0.9rem;
-            left: calc(-2.5rem + 1.15rem);
-            transform: translateX(-50%);
-            width: 1.25rem;
-            height: 1.25rem;
-            border-radius: 999px;
-            border: 3px solid #ffffff;
-            background: var(--primary);
-            box-shadow: 0 0 0 4px rgba(31, 60, 136, 0.15);
+            display: none;
         }
 
         .timeline-card {
@@ -315,15 +296,7 @@
             }
 
             .timeline {
-                padding-left: 2.1rem;
-            }
-
-            .timeline::before {
-                inset: 0 auto 0 0.9rem;
-            }
-
-            .timeline-marker {
-                left: calc(-2.1rem + 0.9rem);
+                gap: 2rem;
             }
 
             .timeline-card {
@@ -349,7 +322,7 @@
             </div>
             <nav aria-label="Primary">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="../index.html">Home</a></li>
                     <li class="has-dropdown">
                         <button type="button" aria-haspopup="true">Experience</button>
                         <ul class="dropdown-menu">
@@ -368,14 +341,13 @@
     <main>
         <section class="page-intro">
             <h1>Certifications</h1>
-            <p>Cloud and security credentials that back up my hands-on infrastructure work with Microsoft Azure, AWS, and enterprise networks.</p>
         </section>
         <section class="timeline" aria-label="Professional certifications">
             <article class="timeline-entry">
                 <div class="timeline-marker" aria-hidden="true"></div>
                 <div class="timeline-card">
                     <header class="timeline-header">
-                        <img src="azure_az104_logo.png" alt="Microsoft Certified: Azure Administrator logo" class="cert-logo">
+                        <img src="../assets/images/azure_az104_logo.png" alt="Microsoft Certified: Azure Administrator logo" class="cert-logo">
                         <div class="cert-details">
                             <h2>Microsoft Certified: Azure Administrator (AZ-104)</h2>
                             <p class="cert-summary">Validates ability to run day-to-day Azure infrastructure.</p>
@@ -401,7 +373,7 @@
                 <div class="timeline-marker" aria-hidden="true"></div>
                 <div class="timeline-card">
                     <header class="timeline-header">
-                        <img src="network_plus_logo.png" alt="CompTIA Network+ logo" class="cert-logo">
+                        <img src="../assets/images/network_plus_logo.png" alt="CompTIA Network+ logo" class="cert-logo">
                         <div class="cert-details">
                             <h2>CompTIA Network+ (N10-009)</h2>
                             <p class="cert-summary">Confirms core networking needed for operations and troubleshooting.</p>
@@ -427,7 +399,7 @@
                 <div class="timeline-marker" aria-hidden="true"></div>
                 <div class="timeline-card">
                     <header class="timeline-header">
-                        <img src="security_plus_logo.png" alt="CompTIA Security+ logo" class="cert-logo">
+                        <img src="../assets/images/security_plus_logo.png" alt="CompTIA Security+ logo" class="cert-logo">
                         <div class="cert-details">
                             <h2>CompTIA Security+ (SY0-701)</h2>
                             <p class="cert-summary">Baseline, hands-on security for enterprise environments.</p>
@@ -453,7 +425,7 @@
                 <div class="timeline-marker" aria-hidden="true"></div>
                 <div class="timeline-card">
                     <header class="timeline-header">
-                        <img src="aws_saa_logo.png" alt="AWS Certified Solutions Architect &ndash; Associate logo" class="cert-logo">
+                        <img src="../assets/images/aws_saa_logo.png" alt="AWS Certified Solutions Architect &ndash; Associate logo" class="cert-logo">
                         <div class="cert-details">
                             <h2>AWS Certified Solutions Architect &ndash; Associate (SAA)</h2>
                             <p class="cert-summary">Validates ability to design well-architected solutions on AWS.</p>

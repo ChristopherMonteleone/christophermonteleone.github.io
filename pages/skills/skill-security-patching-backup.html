@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chris Monteleone | Projects</title>
+    <title>Chris Monteleone | Security, Patching & Backup/Recovery</title>
     <style>
         :root {
             --primary: #1f3c88;
@@ -155,34 +155,26 @@
             margin: 0 auto;
             padding: 6rem 1.5rem 4rem;
             display: grid;
-            gap: 1.25rem;
-        }
-
-        h1 {
-            font-size: clamp(2rem, 4vw, 2.75rem);
-            color: var(--primary);
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
+            gap: 2.5rem;
         }
 
         .page-intro {
             display: grid;
-            gap: 0.75rem;
+            gap: 1rem;
+        }
+
+        .page-intro h1 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            color: var(--primary);
         }
 
         .page-intro p {
+            font-size: 1.1rem;
+            line-height: 1.6;
             color: rgba(31, 31, 31, 0.75);
         }
 
-        .projects-grid {
-            display: grid;
-            gap: 1.5rem;
-        }
-
-        .project-card {
+        .coming-soon {
             background-color: #ffffff;
             border-radius: 1rem;
             padding: 2rem;
@@ -192,46 +184,44 @@
             gap: 1rem;
         }
 
-        .project-card h2 {
-            font-size: clamp(1.35rem, 3vw, 1.65rem);
-            color: rgba(31, 60, 136, 0.9);
+        .coming-soon h2 {
+            font-size: 1.15rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(31, 60, 136, 0.85);
         }
 
-        .project-card ul {
-            list-style: none;
-            display: grid;
-            gap: 0.65rem;
+        .coming-soon p {
+            color: rgba(31, 31, 31, 0.75);
+            line-height: 1.6;
         }
 
-        .project-card ul li {
-            position: relative;
-            padding-left: 1.25rem;
-            color: rgba(31, 31, 31, 0.85);
-        }
-
-        .project-card ul li::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0.55rem;
-            width: 0.45rem;
-            height: 0.45rem;
-            border-radius: 999px;
-            background-color: rgba(31, 60, 136, 0.45);
-        }
-
-        .project-link {
-            font-size: 0.95rem;
+        .back-link {
+            justify-self: flex-start;
+            font-weight: 600;
             color: var(--primary);
             text-decoration: none;
-            font-weight: 600;
-            width: fit-content;
+            border-bottom: 2px solid rgba(31, 60, 136, 0.2);
+            padding-bottom: 0.2rem;
+            transition: border-color 0.2s ease, color 0.2s ease;
         }
 
-        .project-link:hover,
-        .project-link:focus {
-            text-decoration: underline;
+        .back-link:hover,
+        .back-link:focus {
+            color: rgba(31, 60, 136, 0.85);
+            border-color: rgba(31, 60, 136, 0.85);
         }
+
+        @media (max-width: 640px) {
+            .nav-container {
+                padding: 1rem 1.25rem;
+            }
+
+            main {
+                padding: 5rem 1.25rem 3rem;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -247,37 +237,32 @@
             </div>
             <nav aria-label="Primary">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="../../index.html">Home</a></li>
                     <li class="has-dropdown">
                         <button type="button" aria-haspopup="true">Experience</button>
                         <ul class="dropdown-menu">
-                            <li><a href="work-history.html">Work History</a></li>
-                            <li><a href="projects.html">Projects</a></li>
-                            <li><a href="certifications.html">Certifications</a></li>
-                            <li><a href="skills.html">Skills</a></li>
-                            <li><a href="education.html">Education</a></li>
+                            <li><a href="../work-history.html">Work History</a></li>
+                            <li><a href="../projects.html">Projects</a></li>
+                            <li><a href="../certifications.html">Certifications</a></li>
+                            <li><a href="../skills.html">Skills</a></li>
+                            <li><a href="../education.html">Education</a></li>
                         </ul>
                     </li>
-                    <li><a href="about.html">About Me</a></li>
+                    <li><a href="../about.html">About Me</a></li>
                 </ul>
             </nav>
         </div>
     </header>
+
     <main>
         <section class="page-intro">
-            <h1>Projects</h1>
-            <p>Hands-on builds that demonstrate how I design, secure, and automate infrastructure across Microsoft Azure and enterprise Windows environments.</p>
+            <h1>Security, Patching & Backup/Recovery</h1>
+            <p>Implements layered defenses, disciplined patch cycles, and tested recovery plans for critical systems.</p>
         </section>
-
-        <section class="projects-grid" aria-label="Featured projects">
-            <article class="project-card">
-                <h2>Azure-Based Windows Server Active Directory Lab</h2>
-                <ul>
-                    <li>Built a Windows Server 2022 environment in Microsoft Azure, configuring AD DS, DNS, and DHCP end-to-end.</li>
-                    <li>Promoted a Domain Controller, designed OU structure, and managed users, groups, and GPOs for realistic administration scenarios.</li>
-                </ul>
-                <a class="project-link" href="azure-ad-lab.html">View project details</a>
-            </article>
+        <section class="coming-soon">
+            <h2>Details Coming Soon</h2>
+            <p>I'm compiling project snapshots, tooling breakdowns, and lessons learned that show how I apply this capability day-to-day. Check back for deeper stories, metrics, and reusable playbooks.</p>
+            <a class="back-link" href="../skills.html">Back to skills overview</a>
         </section>
     </main>
 </body>
