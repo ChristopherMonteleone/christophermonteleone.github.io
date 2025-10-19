@@ -234,16 +234,29 @@
             color: rgba(31, 31, 31, 0.75);
         }
 
-        .cert-details .cert-link {
+        .cert-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 0.35rem;
+        }
+
+        .cert-links .cert-link {
             font-size: 0.95rem;
             color: var(--primary);
             text-decoration: none;
             font-weight: 600;
+            border: 1px solid rgba(31, 60, 136, 0.35);
+            border-radius: 999px;
+            padding: 0.4rem 0.95rem;
+            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
         }
 
-        .cert-details .cert-link:hover,
-        .cert-details .cert-link:focus {
-            text-decoration: underline;
+        .cert-links .cert-link:hover,
+        .cert-links .cert-link:focus {
+            background-color: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
         }
 
         .timeline-body {
@@ -351,7 +364,10 @@
                         <div class="cert-details">
                             <h2>Microsoft Certified: Azure Administrator (AZ-104)</h2>
                             <p class="cert-summary">Validates ability to run day-to-day Azure infrastructure.</p>
-                            <a class="cert-link" href="https://learn.microsoft.com/en-us/users/chrismonteleone-0629/credentials/f6ec10509d0ec51?ref=https%3A%2F%2Fwww.linkedin.com%2F" target="_blank" rel="noopener">Show credential</a>
+                            <div class="cert-links">
+                                <a class="cert-link" href="https://learn.microsoft.com/en-us/users/chrismonteleone-0629/credentials/f6ec10509d0ec51?ref=https%3A%2F%2Fwww.linkedin.com%2F" target="_blank" rel="noopener">Show credential</a>
+                                <a class="cert-link" href="https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/az-104" target="_blank" rel="noopener">View Official Exam Objectives</a>
+                            </div>
                         </div>
                     </header>
                     <div class="timeline-body">
@@ -377,7 +393,10 @@
                         <div class="cert-details">
                             <h2>CompTIA Network+ (N10-009)</h2>
                             <p class="cert-summary">Confirms core networking needed for operations and troubleshooting.</p>
-                            <a class="cert-link" href="https://www.certmetrics.com/comptia/public/verification.aspx?code=BFTTQLM68750N4V2" target="_blank" rel="noopener">Show credential</a>
+                            <div class="cert-links">
+                                <a class="cert-link" href="https://www.certmetrics.com/comptia/public/verification.aspx?code=BFTTQLM68750N4V2" target="_blank" rel="noopener">Show credential</a>
+                                <a class="cert-link" href="https://www.comptia.org/en-us/certifications/network/" target="_blank" rel="noopener">View Official Exam Objectives</a>
+                            </div>
                         </div>
                     </header>
                     <div class="timeline-body">
@@ -403,7 +422,10 @@
                         <div class="cert-details">
                             <h2>CompTIA Security+ (SY0-701)</h2>
                             <p class="cert-summary">Baseline, hands-on security for enterprise environments.</p>
-                            <a class="cert-link" href="https://www.certmetrics.com/comptia/public/verification.aspx?code=H85TQ9M68Y30HQY2" target="_blank" rel="noopener">Show credential</a>
+                            <div class="cert-links">
+                                <a class="cert-link" href="https://www.certmetrics.com/comptia/public/verification.aspx?code=H85TQ9M68Y30HQY2" target="_blank" rel="noopener">Show credential</a>
+                                <a class="cert-link" href="https://www.comptia.org/en-us/certifications/security/" target="_blank" rel="noopener">View Official Exam Objectives</a>
+                            </div>
                         </div>
                     </header>
                     <div class="timeline-body">
@@ -429,7 +451,10 @@
                         <div class="cert-details">
                             <h2>AWS Certified Solutions Architect &ndash; Associate (SAA)</h2>
                             <p class="cert-summary">Validates ability to design well-architected solutions on AWS.</p>
-                            <a class="cert-link" href="https://cp.certmetrics.com/amazon/en/public/verify/credential/e82c23f95bb14c16ae0bdd5440b79733" target="_blank" rel="noopener">Show credential</a>
+                            <div class="cert-links">
+                                <a class="cert-link" href="https://cp.certmetrics.com/amazon/en/public/verify/credential/e82c23f95bb14c16ae0bdd5440b79733" target="_blank" rel="noopener">Show credential</a>
+                                <a class="cert-link" href="https://aws.amazon.com/certification/certified-solutions-architect-associate/" target="_blank" rel="noopener">View Official Exam Objectives</a>
+                            </div>
                         </div>
                     </header>
                     <div class="timeline-body">
