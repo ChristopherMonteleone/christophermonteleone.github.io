@@ -201,6 +201,85 @@
             border: 1px solid rgba(31, 60, 136, 0.12);
         }
 
+        .photo-gallery {
+            display: grid;
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .gallery-viewport {
+            position: relative;
+        }
+
+        .gallery-set {
+            display: none;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0.85rem;
+        }
+
+        .gallery-set.is-active {
+            display: grid;
+        }
+
+        .gallery-set figure {
+            margin: 0;
+            border-radius: 0.85rem;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(31, 60, 136, 0.12);
+            border: 1px solid rgba(31, 60, 136, 0.08);
+        }
+
+        .gallery-set img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 1 / 1;
+        }
+
+        .gallery-controls {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.5rem;
+        }
+
+        .gallery-nav {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            border: 1px solid rgba(31, 60, 136, 0.2);
+            background: linear-gradient(135deg, rgba(31, 60, 136, 0.1), rgba(31, 60, 136, 0.2));
+            color: var(--primary);
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .gallery-nav:hover,
+        .gallery-nav:focus-visible {
+            background: linear-gradient(135deg, rgba(31, 60, 136, 0.25), rgba(31, 60, 136, 0.35));
+            transform: translateY(-1px);
+        }
+
+        .gallery-nav:disabled {
+            cursor: not-allowed;
+            opacity: 0.4;
+            transform: none;
+        }
+
+        .gallery-nav span {
+            line-height: 1;
+        }
+
+        @media (max-width: 900px) {
+            .gallery-set {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
         @media (max-width: 640px) {
             .nav-container {
                 padding: 1rem 1.25rem;
@@ -208,6 +287,10 @@
 
             main {
                 padding: 5rem 1.25rem 3rem;
+            }
+
+            .gallery-set {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
         }
     </style>
@@ -248,6 +331,70 @@
 
         <section class="story-wrapper" aria-label="Personal story highlights">
             <div class="about-section">
+                <div class="photo-gallery" aria-label="Personal photo gallery">
+                    <div class="gallery-controls" role="group" aria-label="Gallery navigation">
+                        <button class="gallery-nav prev" type="button" aria-label="Show previous photos" disabled>
+                            <span aria-hidden="true">&#10094;</span>
+                        </button>
+                        <button class="gallery-nav next" type="button" aria-label="Show next photos">
+                            <span aria-hidden="true">&#10095;</span>
+                        </button>
+                    </div>
+                    <div class="gallery-viewport">
+                        <div class="gallery-set is-active" data-set="0">
+                            <figure>
+                                <img src="../assets/images/IMG_1344.png" alt="Personal photo IMG 1344" loading="lazy">
+                            </figure>
+                            <figure>
+                                <img src="../assets/images/IMG_2101.png" alt="Personal photo IMG 2101" loading="lazy">
+                            </figure>
+                            <figure>
+                                <img src="../assets/images/IMG_2285.png" alt="Personal photo IMG 2285" loading="lazy">
+                            </figure>
+                            <figure>
+                                <img src="../assets/images/IMG_2669.png" alt="Personal photo IMG 2669" loading="lazy">
+                            </figure>
+                            <figure>
+                                <img src="../assets/images/IMG_2670.png" alt="Personal photo IMG 2670" loading="lazy">
+                            </figure>
+                            <figure>
+                                <img src="../assets/images/IMG_2675.png" alt="Personal photo IMG 2675" loading="lazy">
+                            </figure>
+                            <figure>
+                                <img src="../assets/images/IMG_3261.png" alt="Personal photo IMG 3261" loading="lazy">
+                            </figure>
+                            <figure>
+                                <img src="../assets/images/IMG_3361.png" alt="Personal photo IMG 3361" loading="lazy">
+                            </figure>
+                        </div>
+                        <div class="gallery-set" data-set="1" hidden>
+                            <figure>
+                                <img src="../assets/images/IMG_3533.png" alt="Personal photo IMG 3533" loading="lazy">
+                            </figure>
+                            <figure>
+                                <img src="../assets/images/IMG_3703.png" alt="Personal photo IMG 3703" loading="lazy">
+                            </figure>
+                            <figure>
+                                <img src="../assets/images/IMG_3790.png" alt="Personal photo IMG 3790" loading="lazy">
+                            </figure>
+                            <figure>
+                                <img src="../assets/images/IMG_3849.png" alt="Personal photo IMG 3849" loading="lazy">
+                            </figure>
+                            <figure>
+                                <img src="../assets/images/IMG_4037.PNG" alt="Personal photo IMG 4037" loading="lazy">
+                            </figure>
+                            <figure>
+                                <img src="../assets/images/IMG_4058.png" alt="Personal photo IMG 4058" loading="lazy">
+                            </figure>
+                            <figure>
+                                <img src="../assets/images/IMG_6194.png" alt="Personal photo IMG 6194" loading="lazy">
+                            </figure>
+                            <figure>
+                                <img src="../assets/images/IMG_8451.png" alt="Personal photo IMG 8451" loading="lazy">
+                            </figure>
+                        </div>
+                    </div>
+                </div>
                 <div>
                     <p>I&rsquo;m a technology nerd, dog and cat owner, gamer, weightlifter, coffee drinker, and all-around IT enthusiast.</p>
                     <h2>Back Story</h2>
@@ -272,6 +419,59 @@
             </div>
         </section>
     </main>
+    <script>
+        (function () {
+            const gallery = document.querySelector('.photo-gallery');
+            if (!gallery) {
+                return;
+            }
+
+            const sets = Array.from(gallery.querySelectorAll('.gallery-set'));
+            const prevButton = gallery.querySelector('.gallery-nav.prev');
+            const nextButton = gallery.querySelector('.gallery-nav.next');
+            let activeIndex = sets.findIndex((set) => set.classList.contains('is-active'));
+
+            if (activeIndex === -1) {
+                activeIndex = 0;
+            }
+
+            const updateGallery = () => {
+                sets.forEach((set, index) => {
+                    const isActive = index === activeIndex;
+                    set.classList.toggle('is-active', isActive);
+                    set.toggleAttribute('hidden', !isActive);
+                });
+
+                if (prevButton) {
+                    prevButton.disabled = activeIndex === 0;
+                }
+
+                if (nextButton) {
+                    nextButton.disabled = activeIndex === sets.length - 1;
+                }
+            };
+
+            if (prevButton) {
+                prevButton.addEventListener('click', () => {
+                    if (activeIndex > 0) {
+                        activeIndex -= 1;
+                        updateGallery();
+                    }
+                });
+            }
+
+            if (nextButton) {
+                nextButton.addEventListener('click', () => {
+                    if (activeIndex < sets.length - 1) {
+                        activeIndex += 1;
+                        updateGallery();
+                    }
+                });
+            }
+
+            updateGallery();
+        })();
+    </script>
 </body>
 </html>
 
