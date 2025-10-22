@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chris Monteleone | Projects</title>
+    <title>Automated Android Provisioning with ManageEngine MDM, Zebra StageNow, and Enterprise Home Screen</title>
     <style>
         :root {
             --primary: #1f3c88;
@@ -155,7 +155,7 @@
             margin: 0 auto;
             padding: 6rem 1.5rem 4rem;
             display: grid;
-            gap: 1.25rem;
+            gap: 1.5rem;
         }
 
         h1 {
@@ -163,9 +163,15 @@
             color: var(--primary);
         }
 
+        h2 {
+            font-size: clamp(1.5rem, 3vw, 1.9rem);
+            color: rgba(31, 60, 136, 0.9);
+        }
+
         p {
-            font-size: 1.1rem;
-            line-height: 1.6;
+            font-size: 1.06rem;
+            line-height: 1.7;
+            color: rgba(31, 31, 31, 0.85);
         }
 
         .page-intro {
@@ -177,70 +183,14 @@
             color: rgba(31, 31, 31, 0.75);
         }
 
-        .timeline {
-            display: grid;
-            gap: 2.5rem;
-        }
-
-        .timeline-entry {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .timeline-marker {
-            display: none;
-        }
-
-        .timeline-card {
+        .content-card {
             background-color: #ffffff;
             border-radius: 1rem;
-            padding: 2rem;
+            padding: 2.5rem;
             box-shadow: 0 15px 35px rgba(31, 60, 136, 0.1);
+            border: 1px solid rgba(31, 60, 136, 0.12);
             display: grid;
-            gap: 1.75rem;
-        }
-
-        .project-card h2 {
-            font-size: clamp(1.35rem, 3vw, 1.65rem);
-            color: rgba(31, 60, 136, 0.9);
-        }
-
-        .project-card ul {
-            list-style: none;
-            display: grid;
-            gap: 0.65rem;
-        }
-
-        .project-card ul li {
-            position: relative;
-            padding-left: 1.25rem;
-            color: rgba(31, 31, 31, 0.85);
-        }
-
-        .project-card ul li::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0.55rem;
-            width: 0.45rem;
-            height: 0.45rem;
-            border-radius: 999px;
-            background-color: rgba(31, 60, 136, 0.45);
-        }
-
-        .project-link {
-            font-size: 0.95rem;
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            width: fit-content;
-        }
-
-        .project-link:hover,
-        .project-link:focus {
-            text-decoration: underline;
+            gap: 1.5rem;
         }
 
         @media (max-width: 640px) {
@@ -252,12 +202,8 @@
                 padding: 5rem 1.25rem 3rem;
             }
 
-            .timeline {
-                gap: 2rem;
-            }
-
-            .timeline-card {
-                padding: 1.5rem;
+            .content-card {
+                padding: 2rem;
             }
         }
     </style>
@@ -293,44 +239,16 @@
     </header>
     <main>
         <section class="page-intro">
-            <h1>Projects</h1>
+            <h1>Automated Android Provisioning with ManageEngine MDM, Zebra StageNow, and Enterprise Home Screen</h1>
+            <p>A ManageEngine MDM, Zebra StageNow, and Enterprise Home Screen automation initiative.</p>
         </section>
 
-        <section class="timeline projects-grid" aria-label="Featured projects">
-            <article class="timeline-entry">
-                <div class="timeline-marker" aria-hidden="true"></div>
-                <div class="timeline-card project-card">
-                    <h2>Azure-Based Windows Server Active Directory Lab</h2>
-                    <ul>
-                        <li>Built a Windows Server 2022 environment in Microsoft Azure, configuring AD DS, DNS, and DHCP end-to-end.</li>
-                        <li>Promoted a Domain Controller, designed OU structure, and managed users, groups, and GPOs for realistic administration scenarios.</li>
-                    </ul>
-                    <a class="project-link" href="azure-ad-lab.html">View project details</a>
-                </div>
-            </article>
-            <article class="timeline-entry">
-                <div class="timeline-marker" aria-hidden="true"></div>
-                <div class="timeline-card project-card">
-                    <h2>Automated Android Provisioning with ManageEngine MDM, Zebra StageNow, and Enterprise Home Screen</h2>
-                    <ul>
-                        <li>Designed and automated Android endpoint provisioning with ManageEngine MDM, Zebra StageNow, and Enterprise Home Screen to standardize app access and device posture across 12+ sites and 200+ devices, cutting setup time by 50%.</li>
-                        <li>Created a repeatable factory reset to in-service workflow using barcode kits, USB sideloading, and MDM group assignment, lowering new device time-to-ready from over 1 hour per device to under 30 minutes per device.</li>
-                    </ul>
-                    <a class="project-link" href="android-device-provisioning.html">View project details</a>
-                </div>
-            </article>
-            <article class="timeline-entry">
-                <div class="timeline-marker" aria-hidden="true"></div>
-                <div class="timeline-card project-card">
-                    <h2>Cisco CLI Troubleshooting Labs using Boson NetSim</h2>
-                    <ul>
-                        <li>Completed 30+ routed and switched labs to diagnose VLAN, STP, OSPF, ACL, DHCP, and NAT issues using Cisco CLI, improving L2 and L3 troubleshooting speed and accuracy.</li>
-                        <li>Wrote post-lab analyses and publishable writeups for 10 labs, capturing root cause, fix, and prevention steps.</li>
-                    </ul>
-                    <a class="project-link" href="cisco-cli-troubleshooting-labs.html">View project details</a>
-                </div>
-            </article>
-        </section>
+        <article class="content-card">
+            <section>
+                <h2>Project Overview</h2>
+                <p>This section is still under development, please check back soon!</p>
+            </section>
+        </article>
     </main>
 </body>
 </html>
