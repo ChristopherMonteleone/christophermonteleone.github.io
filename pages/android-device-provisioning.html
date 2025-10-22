@@ -168,10 +168,37 @@
             color: rgba(31, 60, 136, 0.9);
         }
 
+        h3 {
+            font-size: 1.25rem;
+            color: rgba(31, 60, 136, 0.85);
+        }
+
         p {
             font-size: 1.06rem;
             line-height: 1.7;
             color: rgba(31, 31, 31, 0.85);
+        }
+
+        .content-card ul {
+            list-style: none;
+            display: grid;
+            gap: 0.6rem;
+        }
+
+        .content-card ul li {
+            position: relative;
+            padding-left: 1.25rem;
+        }
+
+        .content-card ul li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.55rem;
+            width: 0.45rem;
+            height: 0.45rem;
+            border-radius: 999px;
+            background-color: rgba(31, 60, 136, 0.45);
         }
 
         .page-intro {
@@ -190,7 +217,28 @@
             box-shadow: 0 15px 35px rgba(31, 60, 136, 0.1);
             border: 1px solid rgba(31, 60, 136, 0.12);
             display: grid;
-            gap: 1.5rem;
+            gap: 2rem;
+        }
+
+        .content-card section {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .toc-list {
+            display: grid;
+            gap: 0.5rem;
+        }
+
+        .toc-list a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .toc-list a:hover,
+        .toc-list a:focus {
+            text-decoration: underline;
         }
 
         @media (max-width: 640px) {
@@ -244,9 +292,129 @@
         </section>
 
         <article class="content-card">
-            <section>
+            <section id="overview">
                 <h2>Project Overview</h2>
-                <p>This section is still under development, please check back soon!</p>
+                <p>Delivered automated Android device provisioning and lockdown using ManageEngine MDM, Zebra StageNow, and Enterprise Home Screen. Standardized XML profiles enforce a restricted launcher experience, keep the application set consistent, and significantly reduce hands-on setup time while improving policy compliance.</p>
+            </section>
+
+            <section>
+                <h2>Table of Contents</h2>
+                <ul class="toc-list">
+                    <li><a href="#problem-goal">Problem and Goal</a></li>
+                    <li><a href="#architecture">Architecture</a></li>
+                    <li><a href="#workflow">Provisioning Workflow</a></li>
+                    <li><a href="#policy">Policy and Configuration</a></li>
+                    <li><a href="#results">Results and Impact</a></li>
+                    <li><a href="#xml-example">Sanitized XML Example</a></li>
+                    <li><a href="#summary">Summary</a></li>
+                    <li><a href="#tools">Tools, Skills, and Concepts Demonstrated</a></li>
+                </ul>
+            </section>
+
+            <section id="problem-goal">
+                <h2>Problem and Goal</h2>
+                <ul>
+                    <li><strong>Problem:</strong> Devices were provisioned manually, resulting in inconsistent settings, policy drift, and exposure to unapproved apps.</li>
+                    <li><strong>Goal:</strong> Establish policy-driven provisioning, enforce kiosk mode, and maintain an auditable, near zero-touch rollout for every device.</li>
+                </ul>
+            </section>
+
+            <section id="architecture">
+                <h2>Architecture</h2>
+                <ul>
+                    <li>ManageEngine MDM orchestrates device groups, compliance policies, certificate delivery, and lifecycle automation.</li>
+                    <li>Zebra StageNow generates enrollment barcodes that apply XML profiles during factory setup.</li>
+                    <li>Enterprise Home Screen (EHS) locks devices into kiosk mode with an approved app catalog.</li>
+                    <li>Profile payloads are delivered over Wi-Fi when possible, with USB sideload of APKs reserved for offline staging.</li>
+                </ul>
+            </section>
+
+            <section id="workflow">
+                <h2>Provisioning Workflow</h2>
+                <ul>
+                    <li>Factory reset the Zebra Android device to start from a trusted baseline.</li>
+                    <li>Scan the StageNow barcode to bootstrap Wi-Fi, certificates, and auto-enrollment into ManageEngine MDM.</li>
+                    <li>Dynamic assignment places the device into the correct MDM group based on serial number or site tag.</li>
+                    <li>MDM deploys Wi-Fi profiles, certificates, approved applications, and hardened system settings.</li>
+                    <li>Install and activate the EHS kiosk profile to present only authorized applications and tools.</li>
+                    <li>Run a validation checklist, capture screenshots for audit, and promote the device into the production group.</li>
+                </ul>
+            </section>
+
+            <section id="policy">
+                <h2>Policy and Configuration</h2>
+                <ul>
+                    <li>XML-driven configuration controls Wi-Fi, application packages, launcher icon sizes, orientation locks, debugging, and password policies.</li>
+                    <li>EHS enforces the kiosk allowlist, hides administrative tools, and restricts navigation keys to prevent breakout.</li>
+                    <li>MDM compliance policies monitor for drift, notify administrators, and can quarantine non-compliant devices.</li>
+                </ul>
+            </section>
+
+            <section id="results">
+                <h2>Results and Impact</h2>
+                <ul>
+                    <li>Designed and automated Android endpoint provisioning with ManageEngine MDM, Zebra StageNow, and Enterprise Home Screen to standardize app access and device posture across <em>12+ sites</em> and <em>200+ devices</em>, cutting setup time by <em>50%</em>.</li>
+                    <li>Created a repeatable factory reset to in-service workflow using barcode kits, USB sideloading, and MDM group assignment, lowering new device time-to-ready from over <em>1 hour</em> per device to under <em>30 minutes</em> per device.</li>
+                </ul>
+            </section>
+
+            <section id="xml-example">
+                <h2>Sanitized XML Example</h2>
+                <pre><code>&lt;config&gt;
+  &lt;kiosk/&gt;
+  &lt;applications&gt;
+    &lt;application label=&quot;Kiosk App&quot; package=&quot;com.example.kiosk&quot; activity=&quot;com.example.kiosk.MainActivity&quot;/&gt;
+    &lt;application label=&quot;Support Tool&quot; package=&quot;com.example.support&quot; activity=&quot;com.example.support.MainActivity&quot;/&gt;
+  &lt;/applications&gt;
+  &lt;tools/&gt;
+  &lt;passwords&gt;
+    &lt;!-- Store admin credentials in MDM, not here --&gt;
+    &lt;admin attempts=&quot;1&quot;&gt;ENC_ADMIN_SECRET_PLACEHOLDER&lt;/admin&gt;
+  &lt;/passwords&gt;
+  &lt;user_options&gt;
+    &lt;icon_settings&gt;
+      &lt;app_icon_size&gt;XL&lt;/app_icon_size&gt;
+    &lt;/icon_settings&gt;
+  &lt;/user_options&gt;
+  &lt;preferences&gt;
+    &lt;orientation&gt;portrait&lt;/orientation&gt;
+    &lt;usb_debugging_disabled&gt;1&lt;/usb_debugging_disabled&gt;
+    &lt;wifi&gt;
+      &lt;ssid&gt;CORP_SSID_PLACEHOLDER&lt;/ssid&gt;
+      &lt;security&gt;wpa2&lt;/security&gt;
+      &lt;eap&gt;peap&lt;/eap&gt;
+      &lt;identity&gt;mdm-enroll&lt;/identity&gt;
+      &lt;hidden&gt;0&lt;/hidden&gt;
+    &lt;/wifi&gt;
+  &lt;/preferences&gt;
+&lt;/config&gt;</code></pre>
+            </section>
+
+            <section id="summary">
+                <h2>Summary</h2>
+                <ul>
+                    <li>Built a repeatable, auditable Android provisioning system leveraging StageNow bootstrapping and ManageEngine MDM automation.</li>
+                    <li>Delivered a hardened kiosk experience through Enterprise Home Screen with staged rollouts and rollback plans.</li>
+                    <li>Documented validation checklists and monitoring to sustain compliance and security outcomes.</li>
+                </ul>
+            </section>
+
+            <section id="tools">
+                <h2>Tools, Skills, and Concepts Demonstrated</h2>
+                <h3>Tools</h3>
+                <ul>
+                    <li>ManageEngine MDM, Zebra StageNow, Enterprise Home Screen, and Zebra USB sideload utilities.</li>
+                </ul>
+
+                <h3>Skills</h3>
+                <ul>
+                    <li>Endpoint lifecycle management, Android Enterprise administration, policy design, and change control with RBAC.</li>
+                </ul>
+
+                <h3>Concepts</h3>
+                <ul>
+                    <li>Kiosk mode operations, app allowlists, XML-based configuration management, compliance monitoring, and near zero-touch provisioning.</li>
+                </ul>
             </section>
         </article>
     </main>
