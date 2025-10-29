@@ -168,6 +168,44 @@
             color: var(--primary);
         }
 
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: rgba(31, 31, 31, 0.65);
+        }
+
+        .breadcrumb ol {
+            display: flex;
+            gap: 0.35rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .breadcrumb li {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .breadcrumb li::after {
+            content: "/";
+            color: rgba(31, 31, 31, 0.3);
+        }
+
+        .breadcrumb li:last-child::after {
+            content: "";
+        }
+
+        .breadcrumb a {
+            color: rgba(31, 31, 31, 0.65);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .breadcrumb a:hover,
+        .breadcrumb a:focus {
+            color: var(--primary);
+        }
+
         .page-intro p {
             font-size: 1.1rem;
             line-height: 1.6;
@@ -256,7 +294,14 @@
 
     <main>
         <section class="page-intro">
-            <h1>Communication & Documentation</h1>
+            <h1>Communication &amp; Documentation</h1>
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <ol>
+                    <li><a href="../../index.html">Home</a></li>
+                    <li><a href="../skills.html">Skills</a></li>
+                    <li><a href="skill-communication-documentation.html" aria-current="page">Communication &amp; Documentation</a></li>
+                </ol>
+            </nav>
         </section>
         <section class="coming-soon">
             <h2>Details Coming Soon</h2>

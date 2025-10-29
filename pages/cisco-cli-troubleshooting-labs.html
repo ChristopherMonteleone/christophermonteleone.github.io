@@ -193,6 +193,52 @@
             gap: 1.5rem;
         }
 
+        .breadcrumb {
+            background-color: rgba(31, 60, 136, 0.06);
+            border-radius: 0.75rem;
+            padding: 0.75rem 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            align-items: center;
+        }
+
+        .breadcrumb ol {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .breadcrumb li {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(31, 31, 31, 0.7);
+        }
+
+        .breadcrumb li::after {
+            content: "/";
+            color: rgba(31, 60, 136, 0.35);
+        }
+
+        .breadcrumb li:last-child::after {
+            content: none;
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover,
+        .breadcrumb a:focus {
+            text-decoration: underline;
+        }
+
         @media (max-width: 640px) {
             .nav-container {
                 padding: 1rem 1.25rem;
@@ -240,7 +286,13 @@
     <main>
         <section class="page-intro">
             <h1>Cisco CLI Troubleshooting Labs using Boson NetSim</h1>
-            <p>A Boson NetSim practice series focused on diagnosing routed and switched network issues.</p>
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <ol>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="cisco-cli-troubleshooting-labs.html" aria-current="page">Cisco CLI Troubleshooting Labs</a></li>
+                </ol>
+            </nav>
         </section>
 
         <article class="content-card">
@@ -250,5 +302,15 @@
             </section>
         </article>
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const breadcrumbs = document.querySelectorAll('nav.breadcrumb');
+            breadcrumbs.forEach((breadcrumb, index) => {
+                if (index > 0) {
+                    breadcrumb.remove();
+                }
+            });
+        });
+    </script>
 </body>
 </html>

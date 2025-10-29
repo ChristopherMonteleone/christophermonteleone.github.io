@@ -201,6 +201,52 @@
             background-color: rgba(31, 60, 136, 0.45);
         }
 
+        .breadcrumb {
+            background-color: rgba(31, 60, 136, 0.06);
+            border-radius: 0.75rem;
+            padding: 0.75rem 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            align-items: center;
+        }
+
+        .breadcrumb ol {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .breadcrumb li {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(31, 31, 31, 0.7);
+        }
+
+        .breadcrumb li::after {
+            content: "/";
+            color: rgba(31, 60, 136, 0.35);
+        }
+
+        .breadcrumb li:last-child::after {
+            content: none;
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover,
+        .breadcrumb a:focus {
+            text-decoration: underline;
+        }
+
         .page-intro {
             display: grid;
             gap: 0.75rem;
@@ -288,7 +334,13 @@
     <main>
         <section class="page-intro">
             <h1>Automated Android Provisioning with ManageEngine MDM, Zebra StageNow, and Enterprise Home Screen</h1>
-            <p>A ManageEngine MDM, Zebra StageNow, and Enterprise Home Screen automation initiative.</p>
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <ol>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="android-device-provisioning.html" aria-current="page">Automated Android Provisioning</a></li>
+                </ol>
+            </nav>
         </section>
 
         <article class="content-card">
@@ -418,5 +470,15 @@
             </section>
         </article>
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const breadcrumbs = document.querySelectorAll('nav.breadcrumb');
+            breadcrumbs.forEach((breadcrumb, index) => {
+                if (index > 0) {
+                    breadcrumb.remove();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
