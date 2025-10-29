@@ -202,49 +202,41 @@
         }
 
         .breadcrumb {
-            background-color: rgba(31, 60, 136, 0.06);
-            border-radius: 0.75rem;
-            padding: 0.75rem 1rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            font-size: 0.95rem;
-            align-items: center;
+            font-size: 0.9rem;
+            color: rgba(31, 31, 31, 0.65);
         }
 
         .breadcrumb ol {
-            list-style: none;
             display: flex;
+            gap: 0.35rem;
+            list-style: none;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            align-items: center;
         }
 
         .breadcrumb li {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            color: rgba(31, 31, 31, 0.7);
+            gap: 0.35rem;
         }
 
         .breadcrumb li::after {
             content: "/";
-            color: rgba(31, 60, 136, 0.35);
+            color: rgba(31, 31, 31, 0.3);
         }
 
         .breadcrumb li:last-child::after {
-            content: none;
+            content: "";
         }
 
         .breadcrumb a {
-            color: var(--primary);
-            font-weight: 600;
+            color: rgba(31, 31, 31, 0.65);
             text-decoration: none;
+            font-weight: 500;
         }
 
         .breadcrumb a:hover,
         .breadcrumb a:focus {
-            text-decoration: underline;
+            color: var(--primary);
         }
 
         .page-intro {
@@ -332,20 +324,13 @@
         </div>
     </header>
     <main>
-        <nav class="breadcrumb" aria-label="Breadcrumb">
-            <ol>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="android-device-provisioning.html" aria-current="page">Automated Android Provisioning</a></li>
-            </ol>
-        </nav>
         <section class="page-intro">
             <h1>Automated Android Provisioning with ManageEngine MDM, Zebra StageNow, and Enterprise Home Screen</h1>
             <nav class="breadcrumb" aria-label="Breadcrumb">
                 <ol>
                     <li><a href="../index.html">Home</a></li>
                     <li><a href="projects.html">Projects</a></li>
-                    <li><a href="android-device-provisioning.html" aria-current="page">Automated Android Provisioning</a></li>
+                    <li><a href="android-device-provisioning.html" aria-current="page">Automated Android Provisioning with ManageEngine MDM, Zebra StageNow, and Enterprise Home Screen</a></li>
                 </ol>
             </nav>
         </section>
@@ -477,15 +462,5 @@
             </section>
         </article>
     </main>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const breadcrumbs = document.querySelectorAll('nav.breadcrumb');
-            breadcrumbs.forEach((breadcrumb, index) => {
-                if (index > 0) {
-                    breadcrumb.remove();
-                }
-            });
-        });
-    </script>
 </body>
 </html>
