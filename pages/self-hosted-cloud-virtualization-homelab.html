@@ -282,5 +282,15 @@
             <p>Detailed documentation for this homelab project is coming soon.</p>
         </section>
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const breadcrumbs = document.querySelectorAll('nav.breadcrumb');
+            breadcrumbs.forEach((breadcrumb, index) => {
+                if (index > 0) {
+                    breadcrumb.remove();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
