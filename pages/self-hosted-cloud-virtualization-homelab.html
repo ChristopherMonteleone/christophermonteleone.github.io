@@ -168,13 +168,18 @@
             color: rgba(31, 60, 136, 0.9);
         }
 
+        h3 {
+            font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+            color: var(--primary);
+        }
+
         p {
             font-size: 1.06rem;
             line-height: 1.7;
             color: rgba(31, 31, 31, 0.85);
         }
 
-        .page-header {
+        .page-intro {
             display: grid;
             gap: 0.75rem;
         }
@@ -182,10 +187,16 @@
         .content-card {
             background-color: #ffffff;
             border-radius: 1rem;
-            padding: 2rem;
+            padding: 2.5rem;
             box-shadow: 0 15px 35px rgba(31, 60, 136, 0.1);
+            border: 1px solid rgba(31, 60, 136, 0.12);
             display: grid;
-            gap: 1rem;
+            gap: 2rem;
+        }
+
+        .content-card section {
+            display: grid;
+            gap: 0.75rem;
         }
 
         .breadcrumb {
@@ -225,18 +236,86 @@
         .breadcrumb a:focus {
             color: var(--primary);
         }
+
+        ul,
+        ol {
+            display: grid;
+            gap: 0.5rem;
+            font-size: 1.05rem;
+            color: rgba(31, 31, 31, 0.85);
+            padding-left: 1.5rem;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding-left: 0;
+            display: grid;
+            gap: 0.5rem;
+        }
+
+        .toc-list a {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .toc-list a:hover,
+        .toc-list a:focus {
+            text-decoration: underline;
+        }
+
+        code {
+            font-family: "Fira Code", "Source Code Pro", monospace;
+            background-color: rgba(31, 60, 136, 0.08);
+            padding: 0.2rem 0.35rem;
+            border-radius: 0.35rem;
+        }
+
+        pre {
+            background-color: rgba(31, 60, 136, 0.08);
+            padding: 1rem;
+            border-radius: 0.75rem;
+            overflow-x: auto;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .inline-title {
+            font-weight: 600;
+            color: rgba(31, 60, 136, 0.95);
+        }
+
+        .subsection {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        @media (max-width: 640px) {
+            .nav-container {
+                padding: 1rem 1.25rem;
+            }
+
+            main {
+                padding: 5rem 1.25rem 3rem;
+            }
+
+            .content-card {
+                padding: 2rem;
+            }
+        }
     </style>
 </head>
 <body>
     <header class="site-header">
         <div class="nav-container">
-            <a class="brand" href="../index.html">
-                <span>Chris Monteleone</span>
+            <div class="brand">
+                <span class="name">Chris Monteleone</span>
                 <span class="location">
                     <span class="sr-only">Location:</span>
-                    Omaha, NE
+                    <span aria-hidden="true">&#128205;</span>
+                    Las Vegas, NV
                 </span>
-            </a>
+            </div>
             <nav aria-label="Primary navigation">
                 <ul>
                     <li><a href="../index.html">Home</a></li>
@@ -256,7 +335,7 @@
         </div>
     </header>
     <main>
-        <header class="page-header">
+        <section class="page-intro">
             <h1>Self-Hosted Cloud &amp; Virtualization Homelab</h1>
             <nav class="breadcrumb" aria-label="Breadcrumb">
                 <ol>
@@ -265,12 +344,224 @@
                     <li><a href="self-hosted-cloud-virtualization-homelab.html" aria-current="page">Self-Hosted Cloud &amp; Virtualization Homelab</a></li>
                 </ol>
             </nav>
-        </header>
-
-        <section class="content-card">
-            <h2>Project Overview</h2>
-            <p>Detailed documentation for this homelab project is coming soon.</p>
         </section>
+
+        <article class="content-card">
+            <section id="project-overview">
+                <h2>Project Overview</h2>
+                <p>I built a home cloud on spare hardware by installing Proxmox VE, creating an Ubuntu VM, and deploying Nextcloud All-in-One behind Nginx Proxy Manager with a Cloudflare DNS certificate. This page documents the exact steps, commands, and settings I used.</p>
+            </section>
+
+            <section aria-labelledby="table-of-contents">
+                <h2 id="table-of-contents">Table of Contents</h2>
+                <ul class="toc-list">
+                    <li><a href="#part-1">Part 1: Install Proxmox VE on an old PC</a></li>
+                    <li><a href="#part-2">Part 2: First login and post-install storage fix on Proxmox</a></li>
+                    <li><a href="#part-3">Part 3: Create an Ubuntu VM and prepare Docker</a></li>
+                    <li><a href="#part-4">Part 4: Compose stack for Nginx Proxy Manager and Nextcloud AIO</a></li>
+                    <li><a href="#part-5">Part 5: Cloudflare DNS certificate in NPM</a></li>
+                    <li><a href="#part-6">Part 6: Reverse proxy entries for AIO UI and Nextcloud</a></li>
+                    <li><a href="#part-7">Part 7: Finish the Nextcloud AIO install</a></li>
+                    <li><a href="#summary">Summary</a></li>
+                    <li><a href="#tools">Tools, Skills, and Concepts Demonstrated</a></li>
+                </ul>
+            </section>
+
+            <section id="part-1">
+                <h2>Part 1: Install Proxmox VE on an old PC</h2>
+                <div class="subsection">
+                    <h3>Create boot media and install</h3>
+                    <ul>
+                    <li>Create a Proxmox VE USB installer with Rufus or Balena Etcher.</li>
+                    <li>Boot the PC from USB. In BIOS, set the USB device as Boot Option 1, save with F10, then select <span class="inline-title">Install Proxmox VE</span>.</li>
+                    <li>Walk through the installer: accept EULA, pick the target disk, set locale, admin password, hostname, and network. If DHCP does not populate, assign a static IP.</li>
+                    <li>Reboot when done and remove the USB installer.</li>
+                </ul>
+            </div>
+            <div class="subsection">
+                <h3>First login to the Proxmox web UI</h3>
+                <ul>
+                    <li>From another machine, browse to <code>https://&lt;your-proxmox-ip&gt;:8006</code>, proceed past the certificate warning, and log in as <code>root</code> with the password you set.</li>
+                    <li>You can ignore the no subscription banner for homelab use.</li>
+                </ul>
+            </div>
+        </section>
+
+            <section id="part-2">
+                <h2>Part 2: First login and post-install storage fix on Proxmox</h2>
+                <p>On single-disk installs, the default LVM split leaves local storage small. I removed <code>local-lvm</code> and gave the space back to <code>root</code>, which lets me store ISOs, templates, and disk images in one large directory storage. Do this before creating VMs.</p>
+                <div class="subsection">
+                    <h3>Remove local-lvm in the UI</h3>
+                    <ul>
+                    <li>Navigate to <span class="inline-title">Datacenter → Storage → local-lvm</span> and click <span class="inline-title">Remove</span>.</li>
+                </ul>
+            </div>
+            <div class="subsection">
+                <h3>Expand the root LV from the shell on the Proxmox node</h3>
+                <pre><code># Delete the thinpool LV named "data" that backed local-lvm
+lvremove /dev/pve/data
+
+# Resize root to consume all free space
+lvresize -l +100%FREE /dev/pve/root
+
+# Grow the filesystem
+resize2fs /dev/mapper/pve-root</code></pre>
+                <p>You should now see more free space under <span class="inline-title">Storage → local</span>.</p>
+            </div>
+            </section>
+
+            <section id="part-3">
+                <h2>Part 3: Create an Ubuntu VM and prepare Docker</h2>
+                <div class="subsection">
+                    <h3>Create a VM</h3>
+                    <ul>
+                    <li>Upload an Ubuntu Server or Desktop ISO to <span class="inline-title">Storage → local → ISO Images → Upload</span>.</li>
+                    <li>Click <span class="inline-title">Create VM</span>, select your ISO, and set vCPU, memory, and disk values.</li>
+                    <li>If you cannot select disk images or container templates on <span class="inline-title">local</span>, edit <span class="inline-title">Datacenter → Storage → local</span> and enable needed content types such as <span class="inline-title">Disk image</span> and <span class="inline-title">Container template</span>.</li>
+                </ul>
+            </div>
+            <div class="subsection">
+                <h3>Inside the Ubuntu VM, update and install Docker</h3>
+                <pre><code>sudo apt update &amp;&amp; sudo apt upgrade -y
+curl -fsSL https://get.docker.com | sudo sh
+sudo usermod -aG docker $USER
+newgrp docker</code></pre>
+                <p>Create a working directory and data path:</p>
+                <pre><code>sudo mkdir -p /opt/nextcloud/NC-data
+sudo chown -R $USER:$USER /opt/nextcloud
+cd /opt/nextcloud</code></pre>
+            </div>
+            </section>
+
+            <section id="part-4">
+                <h2>Part 4: Compose stack for Nginx Proxy Manager and Nextcloud AIO</h2>
+                <p>Create <code>compose.yaml</code> in <code>/opt/nextcloud</code> with the following content:</p>
+                <pre><code>services:
+  npm:
+    image: jc21/nginx-proxy-manager:latest
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      DISABLE_IPV6: "true"
+    volumes:
+      - ./npm/data:/data
+      - ./npm/letsencrypt:/etc/letsencrypt
+
+  nextcloud-aio-mastercontainer:
+    image: nextcloud/all-in-one:latest
+    restart: unless-stopped
+    ports:
+      - "8080:8080"       # AIO management UI
+    volumes:
+      - ./nextcloud-aio:/mnt/docker-aio-config
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      APACHE_PORT: "10000"                   # Expose Apache from the Nextcloud container
+      NEXTCLOUD_DATA_DIR: "/opt/nextcloud/NC-data"
+      SKIP_DOMAIN_VALIDATION: "false"
+      # Optional examples you can tune later:
+      # NEXTCLOUD_UPLOAD_LIMIT: "16384M"
+      # NEXTCLOUD_MEMORY_LIMIT: "2048M"
+      # TRUSTED_PROXIES: "192.168.1.0/24"
+      # NEXTCLOUD_TRUSTED_DOMAINS: "nc.example.com"</code></pre>
+            <p>Bring the stack up:</p>
+            <pre><code>docker compose up -d</code></pre>
+            <p>NPM will bind to ports 80, 81, and 443 on the host. The AIO master UI is on <code>https://&lt;docker-host-ip&gt;:8080</code>.</p>
+            </section>
+
+            <section id="part-5">
+                <h2>Part 5: Cloudflare DNS certificate in NPM</h2>
+                <div class="subsection">
+                    <h3>Open the NPM UI</h3>
+                    <p>With host networking, NPM’s admin UI is at <code>http://&lt;docker-host-ip&gt;:81</code>. Log in and create your admin user if this is the first run.</p>
+            </div>
+            <div class="subsection">
+                <h3>Add a wildcard certificate</h3>
+                <ul>
+                    <li>Navigate to <span class="inline-title">SSL Certificates → Add new → Request a new SSL certificate</span>.</li>
+                    <li>Domains: <code>yourdomain.com</code> and <code>*.yourdomain.com</code>.</li>
+                    <li>Choose <span class="inline-title">DNS Challenge</span>, select Cloudflare, paste your API token with Zone DNS Edit permission, accept terms, and save.</li>
+                    <li>You now have a wildcard TLS cert usable across all subdomains.</li>
+                </ul>
+            </div>
+            </section>
+
+            <section id="part-6">
+                <h2>Part 6: Reverse proxy entries for AIO UI and Nextcloud</h2>
+                <p>Create two Proxy Hosts in Nginx Proxy Manager.</p>
+                <div class="subsection">
+                    <h3>AIO management UI</h3>
+                <ul>
+                    <li><span class="inline-title">Domain:</span> <code>aio.yourdomain.com</code></li>
+                    <li><span class="inline-title">Forward Hostname/IP:</span> <code>&lt;docker-host-ip&gt;</code></li>
+                    <li><span class="inline-title">Forward Port:</span> <code>8080</code></li>
+                    <li><span class="inline-title">Scheme:</span> HTTPS</li>
+                    <li>Enable <span class="inline-title">Force SSL</span> and <span class="inline-title">HTTP/2</span>. Save. If you see a 502, verify the scheme is HTTPS. You can now access AIO securely at <code>https://aio.yourdomain.com</code>.</li>
+                </ul>
+            </div>
+            <div class="subsection">
+                <h3>Primary Nextcloud site</h3>
+                <ul>
+                    <li><span class="inline-title">Domain:</span> <code>nc.yourdomain.com</code></li>
+                    <li><span class="inline-title">Forward Hostname/IP:</span> <code>&lt;docker-host-ip&gt;</code></li>
+                    <li><span class="inline-title">Forward Port:</span> <code>10000</code> (must match <code>APACHE_PORT</code>)</li>
+                    <li>Enable <span class="inline-title">Websockets</span>, <span class="inline-title">Block Common Exploits</span>, <span class="inline-title">Force SSL</span>, and <span class="inline-title">HTTP/2</span>.</li>
+                    <li>In <span class="inline-title">Advanced</span>, paste the Nextcloud recommended reverse proxy snippet for Nginx Proxy Manager to set forward headers and client size. Save.</li>
+                </ul>
+            </div>
+            </section>
+
+            <section id="part-7">
+                <h2>Part 7: Finish the Nextcloud AIO install</h2>
+                <div class="subsection">
+                    <h3>Submit the domain in AIO</h3>
+                    <p>In the AIO web UI, enter <code>https://nc.yourdomain.com</code> and submit. It should validate through the proxy.</p>
+            </div>
+            <div class="subsection">
+                <h3>Choose version and optional containers</h3>
+                <ul>
+                    <li>Select Nextcloud Hub 10.</li>
+                    <li>Optional: enable Full Text Search and any other containers you want.</li>
+                    <li>Click <span class="inline-title">Download and start containers</span> and wait for provisioning.</li>
+                </ul>
+            </div>
+            <div class="subsection">
+                <h3>First login</h3>
+                <ul>
+                    <li>AIO will display the initial admin user and password.</li>
+                    <li>Open <code>https://nc.yourdomain.com</code> and sign in.</li>
+                    <li>Immediately change the admin password and set a recovery email in <span class="inline-title">Settings → Users</span>.</li>
+                </ul>
+            </div>
+            <div class="subsection">
+                <h3>Data location reminder</h3>
+                <p>The data path is set to <code>/opt/nextcloud/NC-data</code> in the compose file. If you prefer, map this to a NAS or other storage.</p>
+            </div>
+            </section>
+
+            <section id="summary">
+                <h2>Summary</h2>
+                <ul>
+                    <li>Installed Proxmox VE on spare hardware and reclaimed single-disk space by removing <code>local-lvm</code> and expanding the root LV.</li>
+                    <li>Created an Ubuntu VM and prepared Docker for application deployment.</li>
+                    <li>Deployed Nginx Proxy Manager in host mode and Nextcloud AIO via Docker Compose.</li>
+                    <li>Issued a wildcard TLS certificate with Cloudflare DNS challenge and terminated TLS in NPM.</li>
+                    <li>Published two proxy hosts: one for AIO on 8080 and one for Nextcloud on the Apache port from the AIO stack.</li>
+                    <li>Completed AIO install of Nextcloud Hub 10 and confirmed first login.</li>
+                </ul>
+            </section>
+
+            <section id="tools">
+                <h2>Tools, Skills, and Concepts Demonstrated</h2>
+                <ul>
+                    <li><span class="inline-title">Virtualization and Hypervisor Ops:</span> Proxmox VE install, web UI access on 8006, and storage layout adjustments for single-disk hosts.</li>
+                    <li><span class="inline-title">Linux Administration:</span> Shell work on the Proxmox node, LVM management, filesystem growth, and systemd tuning.</li>
+                    <li><span class="inline-title">Containerization:</span> Docker install and group setup, Compose deployments, and environment tuning for Nextcloud AIO.</li>
+                    <li><span class="inline-title">Networking and Reverse Proxy:</span> Nginx Proxy Manager in host mode, Cloudflare DNS challenge for wildcard certs, HTTPS offload, websockets, and application publishing.</li>
+                    <li><span class="inline-title">Self-Hosted Cloud:</span> Nextcloud AIO management, optional containers like Full Text Search, data directory control, and SMB integration.</li>
+                </ul>
+            </section>
+        </article>
     </main>
 </body>
 </html>
